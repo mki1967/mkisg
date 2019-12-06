@@ -29,30 +29,23 @@ mki3d.url.load = async function( input ) { // load from url
 	    url=new URL(input, mki3d.url.base );
 	else
 	    url=new URL(input); 
-	// console.log(url); /// tests
 	mki3d.message("<div style='font-size:30px;'> LOADING FROM "+url+" ...</div>");
 	let response=await fetch(url, {cache: 'no-cache', mode: 'cors'} ); // no cache version
-	// let response=await fetch(url, {mode: 'cors'} );
-	// console.log( response );   
 	let result= await response.json();
-	// console.log(result); /// tests	
 	mki3d.data=result; /// !!!
-	// let filename = url.substring(url.lastIndexOf('/')+1);
 	let pathname = url.pathname;
 	let filename = pathname.substring(pathname.lastIndexOf('/')+1);
 	mki3d.url.base= url; // new base for next load
 	mki3d.message("<div style='font-size:30px;'>LOADED FROM "+url+".</div>");
 	mki3d.url.inputLoaded=true;
-	// console.log( mki3d.data ); /// test
+	mki3d_texture.deleteTextureGlObjects( backup, gl ); // remove GL objects of old data
     }
     catch( err ) {
 	console.log(err);
 	mki3d.message("<div style='font-size:30px;'>FAILED TO LOAD FROM "+url+".</div>");
 	mki3d.data=mki3d.defaultData;
 	mki3d.url.inputLoaded=false;
-	/// mki3d.url.base=window.location.href; // base url if nothing was loaded
     }
-    // console.log(mki3d.data); /// tests
 }
 
 mki3d.url.completeLink= function ( opener, input) {
@@ -148,18 +141,6 @@ function makeGraph (mki3dData, light){
 	    
 	}
     }
-
-    /*
-    // load triangles and colors to GL buffers
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf.triangles);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array( elements ), gl.DYNAMIC_DRAW );
-    
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf.trianglesColors);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array( elementsColors ), gl.DYNAMIC_DRAW );
-
-    buf.nrOfTriangles =  elements.length/(3*MKI3D_VERTEX_POSITION_SIZE); 
-    */
     
     graph.nrOfTriangles = elements.length/(3*MKI3D_VERTEX_POSITION_SIZE);
     graph.trianglesVertices = new Float32Array( elements );
@@ -174,7 +155,6 @@ function makeGraph (mki3dData, light){
 	graph.texture=mki3dData.texture;
     }
 
-    ////// 
     return graph;
 }
 

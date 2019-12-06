@@ -357,7 +357,6 @@ mki3d_texture.loadElementGlBuffers= function(
 	}
 	gl.bindBuffer(gl.ARRAY_BUFFER, element.gl.posAttrBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array( pos ), gl.DYNAMIC_DRAW );
-	// console.log(pos); /// test
     }
 
     {
@@ -374,7 +373,6 @@ mki3d_texture.loadElementGlBuffers= function(
 	}
 	gl.bindBuffer(gl.ARRAY_BUFFER, element.gl.texAttrBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array( tex ), gl.DYNAMIC_DRAW );
-	// console.log(tex); /// test
     }
     element.gl.validBuffers=true;
 }

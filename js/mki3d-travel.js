@@ -136,12 +136,10 @@ function drawSectors() {
 			) 
 		       );
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, IdMatrix );
-    // gl.disable(gl.DEPTH_TEST);
     drawGraph(sectors);
     // restore matrices 
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
     gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
-    // gl.enable(gl.DEPTH_TEST);
 
 }
 
@@ -155,7 +153,6 @@ function drawScene() {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     travMatrices=computeMatrices(traveler);
-    // mvMatrix= modelViewMatrix(traveler);
     mvMatrix=travMatrices.modelView;
     gl.uniformMatrix3fv(shaderProgram.mRot, false,
 			glMatrix3(
@@ -282,7 +279,6 @@ webGLStart=async function() {
 	    mki3d.url.base= base;
 	}
 	let input=params.get("input")
-	// console.log(input) /// tests
 	if(input) {
 	    // mki3d.url.load("https://raw.githubusercontent.com/mki1967/mki3dgame/master/assets/stages/stage1.mki3d"); /// tests
 	    await mki3d.url.load(input);
@@ -294,8 +290,6 @@ webGLStart=async function() {
 
     sectors=makeGraph ( mki3d.sectors );
     initBuffers(sectors);
-    /// initBuffers(moveMsg);
-    /// initBuffers(rotateMsg);
     buffersScene={};
     // buffersToken={};
     buffersLinkSymbol={};
@@ -316,7 +310,6 @@ webGLStart=async function() {
     loadedStage =  makeStage(mki3d.data, mki3d.url.symbol); /// test
     restoreStage( loadedStage );
     
-    /// console.log( mki3d.data ); /// test
     
     /* skybox init */
     sbx_makeShaderProgram(gl);

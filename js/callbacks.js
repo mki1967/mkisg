@@ -15,7 +15,6 @@ function setViewportProjections() {
     pMatrix= projectionMatrix(projection);
 
     gl.viewport(0,0,wth,hth);
-    // gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
 }
 
 
@@ -35,12 +34,9 @@ function onKeyUp(e){
 
 function onKeyDown(e){
 
-    // stopIntervalAction();
-    // animation.stop();
     if( animation.keyAction ) return; // already set action
     animation.keyAction=true;
     
-    // var code=e.keyCode? e.keyCode : e.charCode;
     var code= e.which || e.keyCode;
     switch(code)
     {
@@ -83,14 +79,6 @@ function onKeyDown(e){
 	break;
 	case 32: // space
 	animation.start( lv )
-	/*
-	if( traveler.rotYZ==0) {
-	    traveler.rotXZ= nearestRightAngle(traveler.rotXZ);
-	} else {
-	    traveler.rotYZ=0;
-	}
-	drawScene();
-	*/
 	break;
 
 	case 84: // T
@@ -116,14 +104,10 @@ function sectorAction(xSector, ySector){
 }
 
 function onMouseDown(evt){
-
-    // console.log(evt); // test
-    
     if( animation.requestId != 0 ) {
 	animation.stop();
 	return;
     }
-    
     var wth = parseInt(window.innerWidth);
     var hth = parseInt(window.innerHeight);
     var xSector= Math.floor(6*evt.clientX/wth);

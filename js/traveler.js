@@ -41,13 +41,6 @@ function checkLinks() {
 	if( maxDistance(vTraveler,position)<linkInDistance && !link.ignored ) {
 	    animation.stop();
 	    let url=mki3d.url.completeLink( link.opener, link.url);
-	    /*
-	    if(confirm( url )){
-		window.open( url, "_self");
-	    } else {
-		link.ignored=true;
-	    }
-	    */
 	    globalGotoURL=url;
 	    sbx_renderRandomCube(gl); // always prepare new skybox 
 	    sbx_drawSkybox ( gl, skyboxViewMatrix(traveler),  pMatrix); /// skybox

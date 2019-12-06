@@ -421,7 +421,6 @@ var sbx_drawSkybox= function ( gl, view, projection ) {
     gl.uniform1i(sbx_skybox, sbx_textureUnit );
     gl.bindTexture(gl.TEXTURE_CUBE_MAP, sbx_textureId);
 
-    //  gl.drawArrays(gl.TRIANGLES, 0, sbx_Float32Array.length/3 );
     gl.drawArrays(gl.TRIANGLES, 0, 36);
     gl.disableVertexAttribArray(sbx_position);
     gl.depthFunc(gl.LESS);
