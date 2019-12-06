@@ -263,14 +263,28 @@ function startTravel()
 }
 
 webGLStart=async function() {
+    ///// test
+    { // load index of stages
+	let url='assets/mki3d/index.json'
+	let response=await fetch(url, {cache: 'no-cache', mode: 'cors'} ); // no cache version
+	let result= await response.json();
+	console.log( result ); ///
+	arrayOfStages=result.stages;
+	console.log( arrayOfStages ); ///
+	
+    }
+
+    
+    
     canvas = document.getElementById("canvasId");
     canvasTex = document.getElementById("canvasTexId");
     canvasTexDiv = document.getElementById("canvasTexDiv");
 
     initGL(canvas);
     initShaders();
+    /*
     {
-	/* test input parameter and try to load */
+	// test input parameter and try to load 
 	mki3d.url.base=document.referrer; // Use referrer as the default base
 	let params = (new URL(document.location)).searchParams;
 	let base = params.get("base")
@@ -287,7 +301,15 @@ webGLStart=async function() {
 	if(!mki3d.url.inputLoaded) mki3d.url.base=window.location.href; // base url if nothing was loaded 
 	///////
     }
+    */
 
+    {
+	let i=Math.floor(Math.random()*(arrayOfStages.length));
+	let url='assets/mki3d/stages/'+arrayOfStages[i];
+	await mki3d.url.load(url);
+	
+    }
+    
     sectors=makeGraph ( mki3d.sectors );
     initBuffers(sectors);
     buffersScene={};

@@ -75,3 +75,7 @@ var startTime;
 
 /* MAIN CANVAS */
 var canvas;
+
+// GAME ASSETS
+
+var arrayOfStages; // index of the game stages
