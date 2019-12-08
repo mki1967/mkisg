@@ -26,7 +26,8 @@ function checkTokens()
             tokenPositions.remaining--;
             collectedAlert= true;
 	    sbx_renderRandomCube(gl); // always prepare new skybox 
-	    showAndHideMessage("REMAINING TOKENS: "+tokenPositions.remaining,  MESSAGE_DELAY);
+	    // showAndHideMessage("REMAINING TOKENS: "+tokenPositions.remaining,  MESSAGE_DELAY);
+	    showAndHideMessage("<span style='font-size: xx-large;'>"+tokenPositions.remaining+"</span>",  MESSAGE_DELAY);
 	}
     }
     if(tokenPositions.remaining===0) {
@@ -35,5 +36,6 @@ function checkTokens()
 	startGame();
     }
 }
+
 
 

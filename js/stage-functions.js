@@ -79,12 +79,12 @@ function restoreStage(stage)
     bgColor=stage.bgColor;
     scene=stage.scene;
     traveler=stage.traveler;
-    // token=stage.token;
+    token=stage.token;
     linkSymbol=stage.linkSymbol;
     frameBox= stage.frameBox;
 
     loadBuffers( scene, buffersScene );
-    // loadBuffers( token, buffersToken );
+    loadBuffers( token, buffersToken );
     loadBuffers( linkSymbol, buffersLinkSymbol );
     loadBuffers( frameBox, buffersFrameBox );
     

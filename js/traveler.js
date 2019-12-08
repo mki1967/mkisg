@@ -29,6 +29,7 @@ function move(traveler, vector)
     traveler.y= Math.max(  traveler.vMin[1]-YMargin, Math.min( traveler.vMax[1]+YMargin, traveler.y+v[1] ));
     traveler.z= Math.max(  traveler.vMin[2]-ZMargin, Math.min( traveler.vMax[2]+ZMargin, traveler.z+v[2] ));
     checkLinks();
+    checkTokens();
 
 }
 

@@ -172,7 +172,7 @@ function drawScene() {
     
     drawGraph(frameBox);
     drawLinks();
-
+    drawTokens();
     sbx_drawSkybox ( gl, skyboxViewMatrix(traveler),  pMatrix); /// skybox
 
     gl.useProgram(shaderProgram);
@@ -180,6 +180,20 @@ function drawScene() {
 
     gl.finish();
 
+
+}
+
+function drawTokens()
+{
+    var i;
+    for(i=0; i<tokenPositions.length; i++) {
+	if( ! tokenPositions[i].collected ) {
+            gl.uniform3f(shaderProgram.vMov, tokenPositions[i][0],  tokenPositions[i][1],tokenPositions[i][2] );
+            drawGraph(token); // test
+	} 
+    }
+
+    gl.uniform3f(shaderProgram.vMov,  0,0,0  ); // reset mov uniform
 
 }
 
@@ -270,6 +284,7 @@ webGLStart=async function() {
 	let result= await response.json();
 	console.log( result ); ///
 	arrayOfStages=result.stages;
+	arrayOfTokens=result.tokens;
 	console.log( arrayOfStages ); ///
 	
     }
@@ -303,22 +318,15 @@ webGLStart=async function() {
     }
     */
 
-    {
-	let i=Math.floor(Math.random()*(arrayOfStages.length));
-	let url='assets/mki3d/stages/'+arrayOfStages[i];
-	await mki3d.url.load(url);
-	
-    }
-    
     sectors=makeGraph ( mki3d.sectors );
     initBuffers(sectors);
     buffersScene={};
-    // buffersToken={};
+    buffersToken={};
     buffersLinkSymbol={};
     buffersFrameBox={};
     
     declareBuffers(buffersScene);
-    // declareBuffers(buffersToken);
+    declareBuffers(buffersToken);
     declareBuffers(buffersLinkSymbol);
     declareBuffers(buffersFrameBox);
       
@@ -328,18 +336,38 @@ webGLStart=async function() {
 
     setViewportProjections(); // sets projection an model view matrices
 
+    startGame();
+
+}
+
+
+async function startGame(){
     /// test
-    loadedStage =  makeStage(mki3d.data, mki3d.url.symbol); /// test
-    restoreStage( loadedStage );
+    {
+	let i=Math.floor(Math.random()*(arrayOfStages.length));
+	let url='assets/mki3d/stages/'+arrayOfStages[i];
+	mki3d.data= await mki3d.url.load(url, mki3d.data );
+	
+    }
     
+    {
+	let i=Math.floor(Math.random()*(arrayOfTokens.length));
+	let url='assets/mki3d/tokens/'+arrayOfTokens[i];
+	mki3d.token= await mki3d.url.load(url, mki3d.token );
+	
+    }
+    
+    loadedStage =  makeStage(mki3d.data, mki3d.token,  mki3d.url.symbol); /// test
+    restoreStage( loadedStage );
+    generateTokenPositions(); 
     
     /* skybox init */
     sbx_makeShaderProgram(gl);
     
     startTravel();
-
-
+    
 }
+
 
 window.onload = webGLStart;
 

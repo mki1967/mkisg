@@ -7,7 +7,7 @@ mki3d.data=mki3d.defaultData= {"model":{"segments":[[{"position":[2,0,0],"color"
 
 mki3d.url={};
 
-mki3d.url.base=document.referrer;
+mki3d.url.base=document.URL;
 
 /* shape of the link symbol */
 mki3d.url.symbol ={"model":{"segments":[[{"position":[-0.5,0,0],"color":[0,0,1],"set":0},{"position":[0,-0.5,0],"color":[0,0,1],"set":0}],[{"position":[-0.5,0,0],"color":[0,0,1],"set":0},{"position":[0,0.5,0],"color":[0,0,1],"set":0}],[{"position":[0,-0.5,0],"color":[0,0,1],"set":0},{"position":[0.5,0,0],"color":[0,0,1],"set":0}],[{"position":[0,0.5,0],"color":[0,0,1],"set":0},{"position":[0.5,0,0],"color":[0,0,1],"set":0}]],"triangles":[[{"position":[-0.5,0,0],"color":[1,1,1],"set":0},{"position":[0,-0.5,0],"color":[1,1,1],"set":0},{"position":[0,0,0],"color":[1,1,1],"set":0}],[{"position":[-0.5,0,0],"color":[1,0,0],"set":0},{"position":[0,0,0],"color":[1,0,0],"set":0},{"position":[0,0.5,0],"color":[1,0,0],"set":0}],[{"position":[0,-0.5,0],"color":[1,0,0],"set":0},{"position":[0,0,0],"color":[1,0,0],"set":0},{"position":[0.5,0,0],"color":[1,0,0],"set":0}],[{"position":[0,0,0],"color":[1,1,1],"set":0},{"position":[0,0.5,0],"color":[1,1,1],"set":0},{"position":[0.5,0,0],"color":[1,1,1],"set":0}]]},"view":{"focusPoint":[0,0,0],"rotationMatrix":[[1,0,0],[0,1,0],[0,0,1]],"scale":2,"screenShift":[0,0,60]},"projection":{"zNear":0.25,"zFar":300,"zoomY":4},"backgroundColor":[0,1,1],"cursor":{"position":[0,0,0],"marker1":null,"marker2":null,"color":[0,0,1],"step":0.5},"clipMaxVector":[100000000000000000000,100000000000000000000,100000000000000000000],"clipMinVector":[-100000000000000000000,-100000000000000000000,-100000000000000000000],"light":{"vector":[0,0,1],"ambientFraction":0.2},"set":{"current":0}}
@@ -15,14 +15,17 @@ mki3d.url.symbol ={"model":{"segments":[[{"position":[-0.5,0,0],"color":[0,0,1],
 
 mki3d.sectors={"model":{"segments":[[{"position":[-1,-1,0],"color":[1,0,0],"set":0},{"position":[-1,1,0],"color":[1,0,0],"set":0}],[{"position":[-1,-1,0],"color":[1,0,0],"set":0},{"position":[1,-1,0],"color":[1,0,0],"set":0}],[{"position":[-1,-0.3333333333333333,0],"color":[1,0,0],"set":0},{"position":[1,-0.3333333333333333,0],"color":[1,0,0],"set":0}],[{"position":[-1,0.3333333333333333,0],"color":[1,0,0],"set":0},{"position":[1,0.3333333333333333,0],"color":[1,0,0],"set":0}],[{"position":[-1,1,0],"color":[1,0,0],"set":0},{"position":[1,1,0],"color":[1,0,0],"set":0}],[{"position":[-0.6666666666666666,-0.3333333333333333,0],"color":[1,0,0],"set":0},{"position":[-0.6666666666666666,0.3333333333333333,0],"color":[1,0,0],"set":0}],[{"position":[-0.3333333333333333,-1,0],"color":[1,0,0],"set":0},{"position":[-0.3333333333333333,1,0],"color":[1,0,0],"set":0}],[{"position":[-0.3333333333333333,-0.6666666666666666,0],"color":[1,0,0],"set":0},{"position":[0.3333333333333333,-0.6666666666666666,0],"color":[1,0,0],"set":0}],[{"position":[-0.3333333333333333,0.6666666666666666,0],"color":[1,0,0],"set":0},{"position":[0.3333333333333333,0.6666666666666666,0],"color":[1,0,0],"set":0}],[{"position":[0.3333333333333333,-1,0],"color":[1,0,0],"set":0},{"position":[0.3333333333333333,1,0],"color":[1,0,0],"set":0}],[{"position":[0.6666666666666666,-0.3333333333333333,0],"color":[1,0,0],"set":0},{"position":[0.6666666666666666,0.3333333333333333,0],"color":[1,0,0],"set":0}],[{"position":[1,-1,0],"color":[1,0,0],"set":0},{"position":[1,1,0],"color":[1,0,0],"set":0}]],"triangles":[]},"view":{"focusPoint":[0,0,0],"rotationMatrix":[[1,0,0],[0,1,0],[0,0,1]],"scale":10,"screenShift":[0,0,60]},"projection":{"zNear":0.25,"zFar":300,"zoomY":4},"backgroundColor":[0,0,0],"cursor":{"position":[0,0,0],"marker1":null,"marker2":null,"color":[1,0,0],"step":0.1},"clipMaxVector":[100000000000000000000,100000000000000000000,100000000000000000000],"clipMinVector":[-100000000000000000000,-100000000000000000000,-100000000000000000000],"light":{"vector":[0,0,1],"ambientFraction":0.2},"set":{"current":0}}
 
+mki3d.token= {"model":{"segments":[],"triangles":[[{"position":[-0.5,-0.5,0],"color":[1,0,0],"set":0},{"position":[-0.5,0.5,0],"color":[1,0,0],"set":0},{"position":[0.5,0.5,0],"color":[1,0,0],"set":0}],[{"position":[-0.5,-0.5,0],"color":[1,0,0],"set":0},{"position":[0.5,-0.5,0],"color":[1,0,0],"set":0},{"position":[0.5,0.5,0],"color":[1,0,0],"set":0}],[{"position":[0,-0.5,-0.5],"color":[1,0,0],"set":1},{"position":[0,-0.5,0.5],"color":[1,0,0],"set":1},{"position":[0,0.5,0.5],"color":[1,0,0],"set":1}],[{"position":[0,-0.5,-0.5],"color":[1,0,0],"set":1},{"position":[0,0.5,-0.5],"color":[1,0,0],"set":1},{"position":[0,0.5,0.5],"color":[1,0,0],"set":1}],[{"position":[-0.5,0,-0.5],"color":[1,0,0],"set":2},{"position":[-0.5,0,0.5],"color":[1,0,0],"set":2},{"position":[0.5,0,0.5],"color":[1,0,0],"set":2}],[{"position":[-0.5,0,-0.5],"color":[1,0,0],"set":2},{"position":[0.5,0,-0.5],"color":[1,0,0],"set":2},{"position":[0.5,0,0.5],"color":[1,0,0],"set":2}]]},"view":{"focusPoint":[0,0,0],"rotationMatrix":[[-0.35230746421756876,-0.6317234038224893,0.6905106745876668],[-0.9103459256928599,0.40250381057071194,-0.09623397555160806],[-0.2171399231624566,-0.6625075271564731,-0.7168919236747049]],"scale":1,"screenShift":[0,0,60]},"projection":{"zNear":0.25,"zFar":300,"zoomY":4},"backgroundColor":[0,0,0],"cursor":{"position":[0,0,0],"marker1":{"position":[-1,-1,0],"color":[1,1,1],"set":0},"marker2":null,"color":[1,0,0],"step":1},"clipMaxVector":[100000000000000000000,100000000000000000000,100000000000000000000],"clipMinVector":[-100000000000000000000,-100000000000000000000,-100000000000000000000],"light":{"vector":[-0.38551922531132526,-0.5648625214636234,0.7295925292662425],"ambientFraction":0.2},"set":{"current":2}}
+
 
 
 mki3d.message= showMessage;
 mki3d.url.inputLoaded=false;
 
-mki3d.url.load = async function( input ) { // load from url 
-    // console.log(input); /// tests
-    let backup= mki3d.data;
+// usage:  data= await mki3d.url.load( url, data )
+mki3d.url.load = async function( input, data ) { // load from url to data
+    // let backup= mki3d.data;
+    let backup= data;
     let url;
     try{
 	if( mki3d.url.base )
@@ -30,12 +33,14 @@ mki3d.url.load = async function( input ) { // load from url
 	else
 	    url=new URL(input); 
 	mki3d.message("<div style='font-size:30px;'> LOADING FROM "+url+" ...</div>");
-	let response=await fetch(url, {cache: 'no-cache', mode: 'cors'} ); // no cache version
+	// let response=await fetch(url, {cache: 'no-cache', mode: 'cors'} ); // no cache version
+	let response=await fetch(url); 
 	let result= await response.json();
-	mki3d.data=result; /// !!!
+	data=result; /// !!!
+	// mki3d.data=result; /// !!!
 	let pathname = url.pathname;
 	let filename = pathname.substring(pathname.lastIndexOf('/')+1);
-	mki3d.url.base= url; // new base for next load
+	// mki3d.url.base= url; // new base for next load
 	mki3d.message("<div style='font-size:30px;'>LOADED FROM "+url+".</div>");
 	mki3d.url.inputLoaded=true;
 	mki3d_texture.deleteTextureGlObjects( backup, gl ); // remove GL objects of old data
@@ -43,9 +48,10 @@ mki3d.url.load = async function( input ) { // load from url
     catch( err ) {
 	console.log(err);
 	mki3d.message("<div style='font-size:30px;'>FAILED TO LOAD FROM "+url+".</div>");
-	mki3d.data=mki3d.defaultData;
+	data=backup;
 	mki3d.url.inputLoaded=false;
     }
+    return data;
 }
 
 mki3d.url.completeLink= function ( opener, input) {
@@ -235,12 +241,13 @@ function makeTraveler(mki3dData) {
     return traveler ;
 }
 
-function makeStage(mki3dData, mki3dLinkSymbol) {
+function makeStage(mki3dData, mki3dToken, mki3dLinkSymbol) {
     var stage = {}
     stage.traveler = makeTraveler(mki3dData);
     stage.bgColor = mki3dData.backgroundColor;
     var light= mki3dData.light
     stage.scene = makeGraph (mki3dData, light) ////
+    stage.token = makeGraph (mki3dToken, light) ////
     stage.linkSymbol = makeGraph (mki3dLinkSymbol, mki3dLinkSymbol.light)  ////  URL link symbol is always lit from the front
     stage.frameBox= makeFrameBox(stage.traveler);
 
