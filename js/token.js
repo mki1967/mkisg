@@ -18,6 +18,7 @@ function checkTokens()
 {
     var i;
     var vTraveler=[traveler.x,traveler.y,traveler.z];
+    collectedAlert = false;
     for(i=0; i<tokenPositions.length; i++)
     {
 	if(!tokenPositions[i].collected && maxDistance(vTraveler, tokenPositions[i])<1) {
@@ -25,11 +26,12 @@ function checkTokens()
             tokenPositions[i].collected= true;
             tokenPositions.remaining--;
             collectedAlert= true;
+	    showAndHideMessage("<span style='font-size:60px;'>"+tokenPositions.remaining+"</span>",  MESSAGE_DELAY);
 	    sbx_renderRandomCube(gl); // always prepare new skybox 
 	    // showAndHideMessage("REMAINING TOKENS: "+tokenPositions.remaining,  MESSAGE_DELAY);
-	    showAndHideMessage("<span style='font-size: xx-large;'>"+tokenPositions.remaining+"</span>",  MESSAGE_DELAY);
 	}
     }
+    if( collectedAlert ) sbx_renderRandomCube(gl); // always prepare new skybox 
     if(tokenPositions.remaining===0) {
 	cancelCallbacks();
 	
