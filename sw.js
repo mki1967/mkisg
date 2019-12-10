@@ -1,9 +1,9 @@
 /*
-  service worker for mki3d.html
+  service worker for MKI_SearchGame
 */
 
-var appName = 'mkisg';
-var version = '0.25';
+var appName = 'MKI_SearchGame';
+var version = '0.1';
 var currentCacheName= appName+'_'+version;
 
 self.addEventListener('install', e => {
@@ -30,7 +30,6 @@ self.addEventListener('activate', e => {
 				console.log(cacheNames); // test
 				let toDelete = cacheNames.filter(
 				    name => name.localeCompare(currentCacheName) != 0 && name.includes(appName+'_')
-					|| name.includes('pwa-assets') // stale names up to version 0.0.8
 				);
 				console.log(toDelete);  // test
 				return Promise.all (

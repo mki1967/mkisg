@@ -1,10 +1,10 @@
 {
     "dir": "ltr",
     "lang": "en",
-    "name": "MKI SEARCHING GAME",
+    "name": "MKI Searching Game",
     "display": "standalone",
     "start_url": "./mkisg.html",
-    "short_name": "MKI_SG",
+    "short_name": "MKI_SearchGame",
     "theme_color": "transparent",
     "description": "Searching in 3D stages",
     "orientation": "landscape",

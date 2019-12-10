@@ -5,6 +5,18 @@
     <meta name="keywords" content="game, 3D, searching, WebGL, mki3d, stages">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="assets/img/mki_icon_16.png">
+    <link rel="manifest" href="./pwa-manifest.json">
+    <script>
+      if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('Service Worker registered', reg))
+      .catch(err => console.error('Service Worker **not** registered', err));
+      }
+      else {
+      console.warn('Service Worker not supported in this browser');
+      }    
+    </script>
+
   </head>
   <body>
     <script src="js/animation.js"></script>
