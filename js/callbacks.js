@@ -1,8 +1,8 @@
 // CALLBACKS
 
 function setViewportProjections() {
-    var wth = parseInt(window.innerWidth)-30;
-    var hth = parseInt(window.innerHeight)-30;
+    var wth = parseInt(window.innerWidth)-10;
+    var hth = parseInt(window.innerHeight)-10;
     var canvas = document.getElementById("canvasId");
 
     canvas.setAttribute("width", ''+wth);
@@ -123,7 +123,7 @@ function onMouseUp(evt){
 }
 
 function onTouchDown(evt){
-    // evt.preventDefault();
+    evt.preventDefault();
     // console.log(evt); // test
     
     if( animation.requestId != 0 ) {
@@ -140,7 +140,7 @@ function onTouchDown(evt){
 }
 
 function onTouchUp(evt){
-    // evt.preventDefault();
+    evt.preventDefault();
     animation.stop();
 }
 

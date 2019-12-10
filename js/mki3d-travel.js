@@ -171,7 +171,7 @@ function drawScene() {
     drawGraph(scene);
     
     drawGraph(frameBox);
-    drawLinks();
+    // drawLinks();
     drawTokens();
     sbx_drawSkybox ( gl, skyboxViewMatrix(traveler),  pMatrix); /// skybox
 
@@ -198,7 +198,7 @@ function drawTokens()
 }
 
 
-
+/*
 function drawLinks()
 {
     if(! mki3d.data.links ) return;
@@ -224,7 +224,7 @@ function drawLinks()
 		       );
     
 }
-
+*/
 
 function drawGraph(graph, modelViewGL, monoProjectionGL) {
     gl.useProgram(shaderProgram);

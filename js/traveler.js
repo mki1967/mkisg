@@ -28,11 +28,12 @@ function move(traveler, vector)
     traveler.x= Math.max(  traveler.vMin[0]-XMargin, Math.min( traveler.vMax[0]+XMargin, traveler.x+v[0] ));
     traveler.y= Math.max(  traveler.vMin[1]-YMargin, Math.min( traveler.vMax[1]+YMargin, traveler.y+v[1] ));
     traveler.z= Math.max(  traveler.vMin[2]-ZMargin, Math.min( traveler.vMax[2]+ZMargin, traveler.z+v[2] ));
-    checkLinks();
+    // checkLinks();
     checkTokens();
 
 }
 
+/*
 function checkLinks() {
     if(! mki3d.data.links ) return;
     let vTraveler=[traveler.x,traveler.y,traveler.z];
@@ -58,3 +59,4 @@ function checkLinks() {
     } 
 
 }
+*/
