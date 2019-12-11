@@ -10,6 +10,7 @@
 "js/mki3d_texture.js",
 "js/mki3d-travel.js",
 "js/skybox_utils2.js",
+"js/skybox_utils3.js",
 "js/stage-functions.js",
 "js/token.js",
 "js/traveler.js",

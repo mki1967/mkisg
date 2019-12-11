@@ -123,7 +123,7 @@ function onMouseUp(evt){
 }
 
 function onTouchDown(evt){
-    evt.preventDefault();
+    // evt.preventDefault();
     // console.log(evt); // test
     
     if( animation.requestId != 0 ) {
@@ -140,7 +140,7 @@ function onTouchDown(evt){
 }
 
 function onTouchUp(evt){
-    evt.preventDefault();
+    // evt.preventDefault();
     animation.stop();
 }
 
