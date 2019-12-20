@@ -162,13 +162,17 @@ function setCallbacks(){
 
 /* hold on callbacks */
 function cancelCallbacks() {
+    clearCallbacks();
+    animation.stop(); 
+}
+
+
+function clearCallbacks(){
     window.onresize=null;
     window.onkeydown=null;
     window.onkeyup=null;
     canvas.removeEventListener("touchstart", onTouchDown);
     canvas.removeEventListener("touchend", onTouchUp);
     canvas.removeEventListener("mousedown", onMouseDown);
-    canvas.removeEventListener("mouseup", onMouseUp);
-    
-    animation.stop(); 
+    canvas.removeEventListener("mouseup", onMouseUp);    
 }

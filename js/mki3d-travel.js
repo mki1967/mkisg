@@ -269,7 +269,7 @@ function startTravel()
 
     
     showMessage(
-		"<div style='font-size:30px;'> Touch/click the screen sectors to navigate !<br>(Or press keys - 'H' for help.)</div>"
+		"<div style='font-size:30px;'> Touch/click the screen sectors to navigate !</div>"
 	       );
     
     
@@ -342,16 +342,9 @@ webGLStart=async function() {
 
 
 async function startGame(){
-    /// test
-    /*
-    {
-	let i=Math.floor(Math.random()*(arrayOfStages.length));
-	let url='assets/mki3d/stages/'+arrayOfStages[i];
-	mki3d.data= await mki3d.url.load(url, mki3d.data );
-	
-    }
-    */
     
+    clearCallbacks();
+    // animation.stop();
     {
 	let i=Math.floor(Math.random()*(arrayOfTokens.length));
 	let url='assets/mki3d/tokens/'+arrayOfTokens[i];
