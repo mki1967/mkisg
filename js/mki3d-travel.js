@@ -343,12 +343,14 @@ webGLStart=async function() {
 
 async function startGame(){
     /// test
+    /*
     {
 	let i=Math.floor(Math.random()*(arrayOfStages.length));
 	let url='assets/mki3d/stages/'+arrayOfStages[i];
 	mki3d.data= await mki3d.url.load(url, mki3d.data );
 	
     }
+    */
     
     {
 	let i=Math.floor(Math.random()*(arrayOfTokens.length));
@@ -356,6 +358,16 @@ async function startGame(){
 	mki3d.token= await mki3d.url.load(url, mki3d.token );
 	
     }
+
+    if( stageIndex == 0 ){ // permute the stages
+	randomShuffle( arrayOfStages );
+	console.log( arrayOfStages ); /// test
+    }
+    let url='assets/mki3d/stages/'+arrayOfStages[stageIndex];
+    mki3d.data= await mki3d.url.load(url, mki3d.data );
+    stageIndex = (stageIndex + 1) % arrayOfStages.length;
+
+    
     
     loadedStage =  makeStage(mki3d.data, mki3d.token,  mki3d.url.symbol); /// test
     restoreStage( loadedStage );

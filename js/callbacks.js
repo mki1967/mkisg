@@ -86,6 +86,10 @@ function onKeyDown(e){
 	showAndHideMessage( "INERTIA: "+(!animation.MouseUpStopAction), 1000 );
 	break;
 	
+	case 88: // X
+	startGame();
+	break;
+	
 	
 	case 27: // escape
 	hideMessage();

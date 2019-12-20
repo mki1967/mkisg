@@ -89,3 +89,24 @@ function restoreStage(stage)
     loadBuffers( frameBox, buffersFrameBox );
     
 }
+
+
+function randomShuffle( t ) { // t is an array
+    let n = t.length;
+
+    if (n <= 1) { // nothing to shuffle
+	return;
+    }
+
+    let	swap = function(i, j) {
+		tmp = t[i]
+		t[i] = t[j]
+		t[j] = tmp
+	}
+
+    for (i = 0; i < n; i++) {
+	j = i + Math.floor(Math.random()*(n-i))
+	swap(i, j);
+	}
+    
+}

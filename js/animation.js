@@ -64,13 +64,27 @@ rr=animation.rotRight= function(){
     if( Math.abs(animation.totalRotXZ) >= 360 ) animation.stop();
 }
 
+
+var secretTaps=0; // superfluous taps on the middle sector
+
 lv= function(){
     if( traveler.rotYZ == 0) {
+	old=traveler.rotXZ;
 	traveler.rotXZ= nearestRightAngle(traveler.rotXZ);
+	if( traveler.rotXZ == old ) {
+	    secretTaps++;
+	} else {
+	    secretTaps=0;
+	}
     } else {
 	traveler.rotYZ=0;
+	secretTaps=0;
     }
     animation.stop();
+    if( secretTaps == 4 ) {
+	secretTaps=0;
+	startGame();
+    }
 }
 
 animation.initRotXZ=0;   // initial XZ rotation

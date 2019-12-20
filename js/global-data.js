@@ -79,7 +79,9 @@ var canvas;
 // GAME ASSETS
 
 var arrayOfStages; // array of the game stages names
+var stageIndex=0; // index of the current stage
 var arrayOfTokens; // array of the game stages names
+
 
 // GAME PARAMETERS
 var MAX_TOKENS = 10;
