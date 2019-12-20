@@ -32,7 +32,7 @@ mki3d.url.load = async function( input, data ) { // load from url to data
 	    url=new URL(input, mki3d.url.base );
 	else
 	    url=new URL(input); 
-	mki3d.message("<div style='font-size:30px;'> LOADING FROM "+url+" ...</div>");
+	// mki3d.message("<div style='font-size:30px;'> LOADING FROM "+url+" ...</div>");
 	// let response=await fetch(url, {cache: 'no-cache', mode: 'cors'} ); // no cache version
 	let response=await fetch(url); 
 	let result= await response.json();
@@ -41,7 +41,7 @@ mki3d.url.load = async function( input, data ) { // load from url to data
 	let pathname = url.pathname;
 	let filename = pathname.substring(pathname.lastIndexOf('/')+1);
 	// mki3d.url.base= url; // new base for next load
-	mki3d.message("<div style='font-size:30px;'>LOADED FROM "+url+".</div>");
+	// mki3d.message("<div style='font-size:30px;'>LOADED FROM "+url+".</div>");
 	mki3d.url.inputLoaded=true;
 	mki3d_texture.deleteTextureGlObjects( backup, gl ); // remove GL objects of old data
     }
