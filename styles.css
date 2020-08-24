@@ -1,1 +1,7 @@
 /* CSS file placeholder. */
+@media all and (display-mode: fullscreen) {
+  body {
+    margin: 0;
+    border: 1px solid black;
+  }
+}

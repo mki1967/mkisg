@@ -8,7 +8,7 @@ animation.lastTime=0  // time of last animation
 animation.deltaTime=0 // delta between the last and this animation
 
 animation.initialSpeed= 0.001 // initial move speed
-animation.maxSpeed= 0.050 // maximal move per milisecond
+animation.maxSpeed= 0.060 // maximal move per milisecond
 
 animation.acceleration= 0.000015 // move acceleration per milisecond
 
