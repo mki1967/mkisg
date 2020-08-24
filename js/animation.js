@@ -7,37 +7,61 @@ animation.startTime=0 // global starting time
 animation.lastTime=0  // time of last animation
 animation.deltaTime=0 // delta between the last and this animation
 
-animation.movSpeed= 0.016 // move per milisecond
-animation.rotSpeed= 0.05 // rotation per milisecond
+animation.initialSpeed= 0.001 // initial move speed
+animation.maxSpeed= 0.050 // maximal move per milisecond
+
+animation.acceleration= 0.000015 // move acceleration per milisecond
+
+animation.movSpeed= animation.initialSpeed;  // move per milisecond
+
+animation.speedUpdate= function(){ // acceleration
+    animation.movSpeed = Math.min( animation.maxSpeed,  animation.movSpeed + animation.deltaTime * animation.acceleration );
+}
+
+animation.speedReset= function(){
+    animation.movSpeed = animation.initialSpeed;
+}
+
+animation.rotSpeed= 0.08 // rotation per milisecond
+
+
+
+
 
 mu=animation.movUp= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [0,step,0] );
+    animation.speedUpdate();
 }
 
 md=animation.movDown= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [0,-step,0] );
+    animation.speedUpdate();
 }
 
 ml=animation.movLeft= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [-step,0,0] );
+    animation.speedUpdate();
 }
 
 mr=animation.movRight= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [step,0,0] );
+    animation.speedUpdate();
 }
 
 mf=animation.movForward= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [0,0,step] );
+    animation.speedUpdate();
 }
 
 mb=animation.movBack= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [0,0,-step] );
+    animation.speedUpdate();
 }
 
 ru=animation.rotUp= function(){
@@ -139,7 +163,8 @@ animation.stop = function() {
     if (animation.requestId)
 	window.cancelAnimationFrame(animation.requestId);
     animation.requestId = 0;
-    drawScene();  
+    drawScene();
+    animation.speedReset();
 }
 
 animation.MouseUpStopAction =  true;
