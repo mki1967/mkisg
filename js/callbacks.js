@@ -1,8 +1,8 @@
 // CALLBACKS
 
 function setViewportProjections() {
-    var wth = parseInt(window.innerWidth)-10;
-    var hth = parseInt(window.innerHeight)-10;
+    var wth = parseInt(window.innerWidth);//-10;
+    var hth = parseInt(window.innerHeight);//-10;
     var canvas = document.getElementById("canvasId");
 
     canvas.setAttribute("width", ''+wth);
