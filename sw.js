@@ -3,7 +3,7 @@
 */
 
 var appName = 'MKI_SearchGame';
-var version = '0.19';
+var version = '0.20';
 var currentCacheName= appName+'_'+version;
 
 self.addEventListener('install', e => {
