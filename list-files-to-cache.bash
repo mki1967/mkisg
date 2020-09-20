@@ -1,6 +1,6 @@
 ls -1 mkisg.html;
 ls -1 pwa-manifest.json;
-ls -1 styles.css;
+# ls -1 styles.css;
 # ls -1 ga.js ;
 ls -1 js/*.js;
 ls -1 assets/mki3d/index.json;
