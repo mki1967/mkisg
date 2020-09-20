@@ -1,12 +1,9 @@
 
-var MESSAGE_DELAY=3000;
-var hideTimeout=null;
+// MESSAGE
 
 var showMessage = function( textHTML ){
     var message =document.querySelector('#messageDiv');
     if( message ) {
-	// ...
-	clearTimeout(hideTimeout);
 	message.innerHTML= textHTML;
 	message.style.display="block"; // show
     }
@@ -19,13 +16,6 @@ var hideMessage = function(){
     }
 }
 
-var showAndHideMessage =  function( textHTML, milliseconds ){
-    var message =document.querySelector('#messageDiv');
-    if( message ) {
-	showMessage(textHTML);
-	hideTimeout=setTimeout(hideMessage, milliseconds); // hide afer milliseconds
-    }
-}
 
 
 var helpMessage = `
@@ -51,10 +41,3 @@ var helpMessage = `
 
 var messageCanceledByAction=true;
 
-var globalGotoURL=""; // where to go after pressing 'GO TO' button
-var gotoMessageButtons = `
-<div align="center">
-    <button onclick="hideMessage()"  style="font-size:30px;float:left;">CANCEL</button>
-    <button onclick="window.open( globalGotoURL, '_self')"  style="font-size:30px;float:right;font-weight: bold;">GO TO ...</button>
-</div>
-`

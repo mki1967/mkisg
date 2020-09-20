@@ -1,3 +1,5 @@
+// MATH
+
 // find the nearest right angle (in dergrees) among the angles {0, 90, 180, 270}
 nearestRightAngle= function(angle) {
     angle = angle - Math.floor(angle/360)*360
@@ -246,5 +248,3 @@ function computeMatrices(viewer)
 	)
     };
 }
-
-

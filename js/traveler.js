@@ -1,4 +1,5 @@
-// var rotXYcounter = 0;
+
+// TRAVELER
 
 function rotateXZ(traveler, angle)
 {
@@ -28,35 +29,5 @@ function move(traveler, vector)
     traveler.x= Math.max(  traveler.vMin[0]-XMargin, Math.min( traveler.vMax[0]+XMargin, traveler.x+v[0] ));
     traveler.y= Math.max(  traveler.vMin[1]-YMargin, Math.min( traveler.vMax[1]+YMargin, traveler.y+v[1] ));
     traveler.z= Math.max(  traveler.vMin[2]-ZMargin, Math.min( traveler.vMax[2]+ZMargin, traveler.z+v[2] ));
-    // checkLinks();
     checkTokens();
-
 }
-
-/*
-function checkLinks() {
-    if(! mki3d.data.links ) return;
-    let vTraveler=[traveler.x,traveler.y,traveler.z];
-    for(let i=0; i<mki3d.data.links.length; i++) {
-	let link= mki3d.data.links[i]
-	let position= link.position;
-	if( maxDistance(vTraveler,position)<linkInDistance && !link.ignored ) {
-	    animation.stop();
-	    let url=mki3d.url.completeLink( link.opener, link.url);
-	    globalGotoURL=url;
-	    sbx_renderRandomCube(gl); // always prepare new skybox 
-	    sbx_drawSkybox ( gl, skyboxViewMatrix(traveler),  pMatrix); /// skybox
-	    showMessage(
-		"<div style='font-size:30px;'>"+link.label
-		    +"</div><div style='font-size:20px;'><a href='"+url+"'><code>"+url+"</code></a></div>"
-		    + gotoMessageButtons
-	    );
-	    link.ignored=true;
-
-	} else if(maxDistance(vTraveler,position)>linkOutDistance) {
-	    link.ignored=false;
-	}
-    } 
-
-}
-*/

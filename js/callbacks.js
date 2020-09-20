@@ -1,3 +1,4 @@
+
 // CALLBACKS
 
 function setViewportProjections() {
@@ -19,12 +20,9 @@ function setViewportProjections() {
 
 
 function onWindowResize() {
-
-    // stopIntervalAction();
     animation.stop();
     setViewportProjections()
     drawScene();
-
 }
 
 function onKeyUp(e){
@@ -83,7 +81,7 @@ function onKeyDown(e){
 
 	case 84: // T
 	animation.MouseUpStopAction =  !animation.MouseUpStopAction;
-	showAndHideMessage( "INERTIA: "+(!animation.MouseUpStopAction), 1000 );
+	showMessage( "INERTIA: "+(!animation.MouseUpStopAction) );
 	break;
 	
 	case 88: // X
@@ -127,14 +125,10 @@ function onMouseUp(evt){
 }
 
 function onTouchDown(evt){
-    // evt.preventDefault();
-    // console.log(evt); // test
-    
     if( animation.requestId != 0 ) {
 	animation.stop();
 	return;
     }
-    
     var wth = parseInt(window.innerWidth);
     var hth = parseInt(window.innerHeight);
     var xSector= Math.floor(6*evt.touches[0].clientX/wth);
@@ -144,17 +138,16 @@ function onTouchDown(evt){
 }
 
 function onTouchUp(evt){
-    // evt.preventDefault();
     animation.stop();
 }
 
 /* set game callbacks */
 function setCallbacks(){
     canvas = document.getElementById("canvasId");
-    canvas.addEventListener("touchstart", onTouchDown, false);
-    canvas.addEventListener("touchend", onTouchUp, false);
-    canvas.addEventListener("mousedown", onMouseDown, false);
-    canvas.addEventListener("mouseup", onMouseUp, false);
+    canvas.addEventListener("touchstart", onTouchDown, {passive: true}); // false);
+    canvas.addEventListener("touchend", onTouchUp, {passive: true}); // false);
+    canvas.addEventListener("mousedown", onMouseDown, {passive: true}); // false);
+    canvas.addEventListener("mouseup", onMouseUp, {passive: true}); // false);
     window.onresize=onWindowResize;
     window.onkeydown=onKeyDown;
     window.onkeyup=onKeyUp; // cancelling action 

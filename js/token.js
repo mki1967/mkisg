@@ -1,3 +1,6 @@
+
+// TOKEN
+
 var tokenpositions=[];
 
 function generateTokenPositions(){
@@ -26,18 +29,13 @@ function checkTokens()
             tokenPositions[i].collected= true;
             tokenPositions.remaining--;
             collectedAlert= true;
-	    showAndHideMessage("<span style='font-size:60px;'>"+tokenPositions.remaining+"</span>",  MESSAGE_DELAY);
+	    showMessage("<span style='font-size:60px;'>"+tokenPositions.remaining+"</span>");
 	    sbx_renderRandomCube(gl); // always prepare new skybox 
-	    // showAndHideMessage("REMAINING TOKENS: "+tokenPositions.remaining,  MESSAGE_DELAY);
 	}
     }
     if( collectedAlert ) sbx_renderRandomCube(gl); // always prepare new skybox 
     if(tokenPositions.remaining===0) {
-	cancelCallbacks();
-	
+	cancelCallbacks();	
 	startGame();
     }
 }
-
-
-
