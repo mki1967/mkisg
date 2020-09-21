@@ -14,35 +14,31 @@
     "prefer_related_applications": false,
     "icons": [
 	{
-	    "src": "./assets/img/mki_icon_16.png",
+	    "src": "./assets/img/mkisg_icon_120x120.png",
 	    "type": "image/png",
-	    "sizes": "16x16"
+	    "sizes": "120x120",
+	    "purpose":"any"
+
 	},
 	{
-	    "src": "./assets/img/mki_icon_144x144.png",
+	    "src": "./assets/img/mkisg_icon_180x180.png",
 	    "type": "image/png",
-	    "sizes": "144x144"
+	    "sizes": "180x180",
+	    "purpose":"any"
+
 	},
 	{
-	    "src": "./assets/img/mki_icon_48.png",
+	    "src": "./assets/img/mkisg_icon_192x192.png",
 	    "type": "image/png",
-	    "sizes": "48x48"
-	},
-	{
-	    "src": "./assets/img/mkisg_icon_512x512.png",
-	    "type": "image/png",
-	    "sizes": "512x512"
+	    "sizes": "192x192",
+	    "purpose":"any"
+
 	},
 	{
 	    "src": "./assets/img/mkisg_icon_512x512.png",
 	    "type": "image/png",
 	    "sizes": "512x512",
-	    "purpose":"maskable"
-	},
-	{
-	    "src": "./assets/img/mki_icon_192x192.png",
-	    "type": "image/png",
-	    "sizes": "192x192"
+	    "purpose":"any"
 	}
     ]
 }
