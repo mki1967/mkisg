@@ -1,10 +1,10 @@
 {
     "dir": "ltr",
     "lang": "en",
-    "name": "MKI Searching Game",
+    "name": "MKI Search Game",
     "display": "fullscreen",
     "start_url": "./mkisg.html",
-    "short_name": "MKI_SearchGame",
+    "short_name": "MKI_SG",
     "theme_color": "transparent",
     "description": "Searching in 3D stages",
     "orientation": "landscape",
@@ -17,28 +17,28 @@
 	    "src": "./assets/img/mkisg_icon_120x120.png",
 	    "type": "image/png",
 	    "sizes": "120x120",
-	    "purpose":"any"
+	    "purpose":"any maskable"
 
 	},
 	{
 	    "src": "./assets/img/mkisg_icon_180x180.png",
 	    "type": "image/png",
 	    "sizes": "180x180",
-	    "purpose":"any"
+	    "purpose":"any maskable"
 
 	},
 	{
 	    "src": "./assets/img/mkisg_icon_192x192.png",
 	    "type": "image/png",
 	    "sizes": "192x192",
-	    "purpose":"any"
+	    "purpose":"any maskable"
 
 	},
 	{
 	    "src": "./assets/img/mkisg_icon_512x512.png",
 	    "type": "image/png",
 	    "sizes": "512x512",
-	    "purpose":"any"
+	    "purpose":"any maskable"
 	}
     ]
 }
