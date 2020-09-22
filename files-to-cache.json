@@ -1,4 +1,6 @@
 ["mkisg.html",
+"index.html",
+"instructions.html",
 "pwa-manifest.json",
 "terser/minified.js",
 "assets/mki3d/index.json",

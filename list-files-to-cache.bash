@@ -1,4 +1,6 @@
 ls -1 mkisg.html;
+ls -1 index.html;
+ls -1 instructions.html;
 ls -1 pwa-manifest.json;
 # ls -1 styles.css;
 # ls -1 ga.js ;
