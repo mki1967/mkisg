@@ -29,7 +29,7 @@ function checkTokens()
             tokenPositions[i].collected= true;
             tokenPositions.remaining--;
             collectedAlert= true;
-	    showMessage("<span style='font-size:60px;'>"+tokenPositions.remaining+"</span>");
+	    showMessage("<span style='font-size:40px;'>"+tokenPositions.remaining+"</span>");
 	    sbx_renderRandomCube(gl); // always prepare new skybox 
 	}
     }

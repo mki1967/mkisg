@@ -269,7 +269,7 @@ function startTravel()
 
     
     showMessage(
-		"<div style='font-size:30px;'> Touch/click the screen sectors to navigate !</div>"
+		"<div style='font-size:20px;'> Touch/click the screen sectors to navigate !</div>"
 	       );
     
     
@@ -358,7 +358,7 @@ async function startGame(){
     }
     let url='assets/mki3d/stages/'+arrayOfStages[stageIndex];
     showMessage(
-		"<div style='font-size:30px;'>LOADING NEXT STAGE ...</div>"
+		"<div style='font-size:20px;'>LOADING NEXT STAGE ...</div>"
 	       );
     
     mki3d.data= await mki3d.url.load(url, mki3d.data );
