@@ -3,7 +3,7 @@
     "lang": "en",
     "name": "MKI Search Game",
     "display": "fullscreen",
-    "start_url": "./index.html",
+    "start_url": "./",
     "short_name": "MKI_SG",
     "theme_color": "transparent",
     "description": "Searching in 3D stages",
