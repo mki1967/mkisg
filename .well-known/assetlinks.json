@@ -1,5 +1,5 @@
 [{
       "relation": ["delegate_permission/common.handle_all_urls"],
-      "target" : { "namespace": "android_app", "package_name": "io.github.mki1967.twa",
-                   "sha256_cert_fingerprints": ["99:7D:FD:32:30:7F:20:31:D0:AF:79:59:E6:37:8F:34:2C:3C:09:49:62:11:4D:C7:49:DC:BA:12:69:63:56:25"] }
+      "target" : { "namespace": "android_app", "package_name": "io.github.mki1967.mkisg",
+                   "sha256_cert_fingerprints": ["E2:93:8F:1C:03:91:7C:47:18:33:4A:0D:DC:7E:E0:24:E4:9F:12:2E:66:BB:B7:BE:23:E2:F6:42:9C:A3:11:5C"] }
     }]
