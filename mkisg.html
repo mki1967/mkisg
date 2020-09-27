@@ -19,7 +19,7 @@
       border: 0px solid black;
       }
       }
-      .noselect {
+      .message {
       -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
       -khtml-user-select: none; /* Konqueror HTML */
@@ -27,6 +27,12 @@
       -ms-user-select: none; /* Internet Explorer/Edge */
       user-select: none; /* Non-prefixed version, currently
       supported by Chrome and Opera */
+      position: relative;
+      top: 20px;
+      left: 30px;
+      color: black;
+      background-color: white;
+      display: none
       }
     </style>
     <link rel="icon" type="image/png" href="assets/img/mkisg_icon_32x32.png">
@@ -65,7 +71,7 @@
       <canvas id="canvasId" width="640" height="400"  style="position: fixed; top: 0px; left: 0px; border:0px; margin: 0px; padding: 0px;" >
 	Your browser does not support the canvas element.
       </canvas>
-      <div id="messageDiv" class=".noselect" style="position: relative; top: 20px; left: 30px; color: black; background-color: white; display: none">
+      <div id="messageDiv" class="message">
 	MESSAGE ...
       </div>
     </div>
