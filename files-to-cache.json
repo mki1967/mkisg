@@ -4,6 +4,7 @@
 "pwa-manifest.json",
 "terser/minified.js",
 "assets/mki3d/index.json",
+"dataIndex.js",
 "assets/mki3d/tokens/item.mki3d",
 "assets/mki3d/tokens/token2.mki3d",
 "assets/mki3d/stages/2016-11-11-textured.mki3d",

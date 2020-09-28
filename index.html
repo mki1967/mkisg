@@ -17,6 +17,14 @@
       console.warn('Service Worker not supported in this browser');
       }    
     </script>
+    <script src="dataIndex.js"></script>
+    <script>
+      window.onload = function () {
+      document.querySelector('#statsId').innerHTML =
+      "Number of stages in this version is: "
+      + dataIndex.stages.length;
+      }
+    </script>
     <style>
       html * {
         font-size: 20pt ;
@@ -40,8 +48,10 @@
     <p>
        Hint: Play in <em>landscape</em> sreen orientation.
     </p>
+    <p id="statsId">
+    </p>
       <a href="privacy-policy.html">
-	Here is: Privacy Policy.
+	Privacy Policy.
       </a>
     <p>
     </p>
