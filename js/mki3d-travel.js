@@ -276,7 +276,7 @@ function startTravel()
     setCallbacks();
 }
 
-webGLStart=async function() {
+var webGLStart=async function() {
     ///// test
     { // load index of stages
 	let url='assets/mki3d/index.json'

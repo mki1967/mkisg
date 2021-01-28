@@ -99,14 +99,14 @@ function randomShuffle( t ) { // t is an array
     }
 
     let	swap = function(i, j) {
-		tmp = t[i]
-		t[i] = t[j]
-		t[j] = tmp
-	}
+	let tmp = t[i]
+	t[i] = t[j]
+	t[j] = tmp
+    }
 
-    for (i = 0; i < n; i++) {
-	j = i + Math.floor(Math.random()*(n-i))
+    for (let i = 0; i < n; i++) {
+	let j = i + Math.floor(Math.random()*(n-i))
 	swap(i, j);
-	}
+    }
     
 }

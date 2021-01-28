@@ -1,6 +1,6 @@
 /* the code for dealing with texturing */
 
-mki3d_texture={};
+var mki3d_texture={};
 
 mki3d_texture.texSize= 256; // the default size of the texture
 
@@ -131,7 +131,7 @@ mki3d_texture.createTexture= function(
 	gl.bindBuffer(gl.ARRAY_BUFFER, mki3d_texture.hBufferId );
 
 	let hIn=[];
-	for(var i=0; i< texSize+4; i++) {
+	for(let i=0; i< texSize+4; i++) {
 	    hIn.push(i-2);
 	}
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array( hIn ) , gl.STATIC_DRAW );
@@ -183,7 +183,7 @@ mki3d_texture.createTexture= function(
 
     gl.enableVertexAttribArray(mki3d_texture.hLocation);
     gl.bindBuffer(gl.ARRAY_BUFFER, mki3d_texture.hBufferId);
-    for( j=0; j<texSize+4; j++) {
+    for(let j=0; j<texSize+4; j++) {
 	gl.uniform1f(mki3d_texture.vLocation, j-2);
 	gl.vertexAttribPointer( mki3d_texture.hLocation, 1, gl.FLOAT, false, 0, 0);
 	gl.drawArrays(gl.POINTS, 0, texSize+4);

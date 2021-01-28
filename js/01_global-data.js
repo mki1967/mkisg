@@ -76,6 +76,21 @@ var startTime;
 /* MAIN CANVAS */
 var canvas;
 
+/* texture-rendering canvas */
+var canvasTex;
+var canvasTexDiv;
+
+/* graph for sectors */
+var sectors;
+
+/* buffers for graph data */
+var buffersScene={};
+var buffersToken={};
+var buffersLinkSymbol={};
+var buffersFrameBox={};
+
+
+
 // GAME ASSETS
 
 var arrayOfStages; // array of the game stages names

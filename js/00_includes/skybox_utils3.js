@@ -124,6 +124,8 @@ var sbx_renderTextureFS= function( r, g, b) { // r,g,b are the color functions: 
 // var sbx_renderTextureVS=null;
 var sbx_renderTextureShaderProgram=null;
 var  sbx_hBufferId=null; // array: [0,1, ..., sbx_CUBE_SIZE-1]
+var sbx_vInLocation;
+var sbx_xyzLocation;
 
 var sbx_makeRenderTextureShaderProgram= function (gl){
     var fun=sbx_srcFunStrings;
@@ -169,13 +171,14 @@ var sbx_makeRenderTextureShaderProgram= function (gl){
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array( hIn ) , gl.STATIC_DRAW );
     }
 
-    if( gl.getError() != gl.NO_ERROR ) sbx_Disable();
+    let err=gl.getError();
+    if( err != gl.NO_ERROR ) sbx_Disable(err);
 
 };
 
 
-sbx_Disable= function(){
-    console.log("Disabling skybox to to GL ERROR")
+function sbx_Disable(err){
+    console.log("Disabling skybox to to GL ERROR: "+err)
     sbx_makeShaderProgram= sbx_renderRandomCube= sbx_makeRenderTextureShaderProgram= sbx_makeShaderProgramTool= sbx_drawSkybox= function(){}
 }
 
@@ -384,7 +387,7 @@ var sbx_Float32Array= new Float32Array( [
 var sbx_arrayBuffer=null;
 
 
-var sbx_makeShaderProgram= function(gl){
+function sbx_makeShaderProgram(gl){
     /* Parameters:
        gl - WebGL context
     */

@@ -21,7 +21,7 @@ function checkTokens()
 {
     var i;
     var vTraveler=[traveler.x,traveler.y,traveler.z];
-    collectedAlert = false;
+    let collectedAlert = false;
     for(i=0; i<tokenPositions.length; i++)
     {
 	if(!tokenPositions[i].collected && maxDistance(vTraveler, tokenPositions[i])<1) {

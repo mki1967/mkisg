@@ -1,7 +1,7 @@
 // MATH
 
 // find the nearest right angle (in dergrees) among the angles {0, 90, 180, 270}
-nearestRightAngle= function(angle) {
+var nearestRightAngle= function(angle) {
     angle = angle - Math.floor(angle/360)*360
     var d = Math.abs(angle)
     var out = 0
@@ -41,9 +41,9 @@ nearestRightAngle= function(angle) {
 
 function maxDistance(v1,v2)
 {
-    dx=Math.abs(v1[0]-v2[0]);
-    dy=Math.abs(v1[1]-v2[1]);
-    dz=Math.abs(v1[2]-v2[2]);
+    let dx=Math.abs(v1[0]-v2[0]);
+    let dy=Math.abs(v1[1]-v2[1]);
+    let dz=Math.abs(v1[2]-v2[2]);
 
     return Math.max(dx,dy,dz); 
 }
@@ -51,32 +51,32 @@ function maxDistance(v1,v2)
 
 // from mki3d
 
-vectorClone= function (v){
+var vectorClone= function (v){
     return [v[0],v[1],v[2]]; 
 };
 
-vectorScale = function(v, sx, sy, sz ) {
+var vectorScale = function(v, sx, sy, sz ) {
     v[0]*= sx;
     v[1]*= sy;
     v[2]*= sz;
 };
 
 
-scalarProduct= function( v, w ) {
+var scalarProduct= function( v, w ) {
     return v[0]*w[0]+v[1]*w[1]+v[2]*w[2];
 };
 
-vectorProduct= function( a, b ) { // cross product
+var vectorProduct= function( a, b ) { // cross product
     return [ a[1]*b[2]-a[2]*b[1],
              a[2]*b[0]-a[0]*b[2],
              a[0]*b[1]-a[1]*b[0]  ];
 };
 
-vectorLength = function (a) {
+var vectorLength = function (a) {
     return Math.sqrt(scalarProduct(a,a));
 };
 
-vectorNormalized = function (v) { 
+var vectorNormalized = function (v) { 
     var len= vectorLength(v);
     if(len==0) return [0,0,0]; // normalized zero vector :-(
     var vn= vectorClone(v);
@@ -85,7 +85,7 @@ vectorNormalized = function (v) {
     return vn;
 };
 
-normalToPlane = function ( a, b, c ) { // a,b,c are three points of the plane
+var normalToPlane = function ( a, b, c ) { // a,b,c are three points of the plane
     var v1 = [ b[0]-a[0], b[1]-a[1], b[2]-a[2] ];
     var v2 = [ c[0]-a[0], c[1]-a[1], c[2]-a[2] ];
     return vectorNormalized( vectorProduct( v1, v2 ) );
