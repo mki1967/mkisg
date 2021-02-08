@@ -1,7 +1,7 @@
 
 // ANIMATION
 
-animation={}
+var animation={}
 animation.requestId=0
 animation.startTime=0 // global starting time
 animation.lastTime=0  // time of last animation
@@ -28,60 +28,60 @@ animation.rotSpeed= 0.08 // rotation per milisecond
 
 
 
-mu=animation.movUp= function(){
+var mu=animation.movUp= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [0,step,0] );
     animation.speedUpdate();
 }
 
-md=animation.movDown= function(){
+var md=animation.movDown= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [0,-step,0] );
     animation.speedUpdate();
 }
 
-ml=animation.movLeft= function(){
+var ml=animation.movLeft= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [-step,0,0] );
     animation.speedUpdate();
 }
 
-mr=animation.movRight= function(){
+var mr=animation.movRight= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [step,0,0] );
     animation.speedUpdate();
 }
 
-mf=animation.movForward= function(){
+var mf=animation.movForward= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [0,0,step] );
     animation.speedUpdate();
 }
 
-mb=animation.movBack= function(){
+var mb=animation.movBack= function(){
     var step =  animation.movSpeed*animation.deltaTime
     move( traveler, [0,0,-step] );
     animation.speedUpdate();
 }
 
-ru=animation.rotUp= function(){
+var ru=animation.rotUp= function(){
     var step =  animation.rotSpeed*animation.deltaTime
     rotateYZ(traveler, -step );
 }
     
-rd=animation.rotDown= function(){
+var rd=animation.rotDown= function(){
     var step =  animation.rotSpeed*animation.deltaTime
     rotateYZ(traveler, step );
 }
 
-rl=animation.rotLeft= function(){
+var rl=animation.rotLeft= function(){
     var step =  animation.rotSpeed*animation.deltaTime
     rotateXZ(traveler, step );
     animation.totalRotXZ+=step
     if( Math.abs(animation.totalRotXZ) >= 360 ) animation.stop();
 }
 
-rr=animation.rotRight= function(){
+var rr=animation.rotRight= function(){
     var step =  animation.rotSpeed*animation.deltaTime
     rotateXZ(traveler, -step );
     animation.totalRotXZ+=step
@@ -91,7 +91,7 @@ rr=animation.rotRight= function(){
 
 var secretTaps=0; // superfluous taps on the middle sector
 
-lv= function(){
+var lv= function(){
     if( traveler.rotYZ == 0) {
 	old=traveler.rotXZ;
 	traveler.rotXZ= nearestRightAngle(traveler.rotXZ);

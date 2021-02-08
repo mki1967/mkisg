@@ -1,6 +1,6 @@
 /* mki3d */
 
-mki3d={};
+var mki3d={};
 
 /* default data */
 mki3d.data=mki3d.defaultData= {"model":{"segments":[[{"position":[2,0,0],"color":[1,1,1],"set":0},{"position":[4,-2,0],"color":[1,1,1],"set":0}],[{"position":[2,0,0],"color":[1,1,1],"set":0},{"position":[4,2,0],"color":[1,1,1],"set":0}],[{"position":[4,-2,0],"color":[1,1,1],"set":0},{"position":[4,-1,0],"color":[1,1,1],"set":0}],[{"position":[4,-1,0],"color":[1,1,1],"set":0},{"position":[8,-1,0],"color":[1,1,1],"set":0}],[{"position":[4,1,0],"color":[1,1,1],"set":0},{"position":[4,2,0],"color":[1,1,1],"set":0}],[{"position":[4,1,0],"color":[1,1,1],"set":0},{"position":[8,1,0],"color":[1,1,1],"set":0}],[{"position":[8,-1,0],"color":[1,1,1],"set":0},{"position":[8,1,0],"color":[1,1,1],"set":0}],[{"position":[0,3,0],"color":[1,1,1],"set":1},{"position":[-1,3,0],"color":[1,1,1],"set":1}],[{"position":[0,3,0],"color":[1,1,1],"set":1},{"position":[0,7,0],"color":[1,1,1],"set":1}],[{"position":[1,1,0],"color":[1,1,1],"set":1},{"position":[-1,3,0],"color":[1,1,1],"set":1}],[{"position":[1,1,0],"color":[1,1,1],"set":1},{"position":[3,3,0],"color":[1,1,1],"set":1}],[{"position":[2,3,0],"color":[1,1,1],"set":1},{"position":[2,7,0],"color":[1,1,1],"set":1}],[{"position":[2,7,0],"color":[1,1,1],"set":1},{"position":[0,7,0],"color":[1,1,1],"set":1}],[{"position":[3,3,0],"color":[1,1,1],"set":1},{"position":[2,3,0],"color":[1,1,1],"set":1}],[{"position":[-6,1,0],"color":[1,1,1],"set":2},{"position":[-6,-1,0],"color":[1,1,1],"set":2}],[{"position":[-2,-1,0],"color":[1,1,1],"set":2},{"position":[-6,-1,0],"color":[1,1,1],"set":2}],[{"position":[-2,-1,0],"color":[1,1,1],"set":2},{"position":[-2,-2,0],"color":[1,1,1],"set":2}],[{"position":[-2,1,0],"color":[1,1,1],"set":2},{"position":[-6,1,0],"color":[1,1,1],"set":2}],[{"position":[-2,2,0],"color":[1,1,1],"set":2},{"position":[-2,1,0],"color":[1,1,1],"set":2}],[{"position":[0,0,0],"color":[1,1,1],"set":2},{"position":[-2,-2,0],"color":[1,1,1],"set":2}],[{"position":[0,0,0],"color":[1,1,1],"set":2},{"position":[-2,2,0],"color":[1,1,1],"set":2}],[{"position":[-1,-3,0],"color":[1,1,1],"set":3},{"position":[0,-3,0],"color":[1,1,1],"set":3}],[{"position":[0,-7,0],"color":[1,1,1],"set":3},{"position":[2,-7,0],"color":[1,1,1],"set":3}],[{"position":[0,-3,0],"color":[1,1,1],"set":3},{"position":[0,-7,0],"color":[1,1,1],"set":3}],[{"position":[1,-1,0],"color":[1,1,1],"set":3},{"position":[-1,-3,0],"color":[1,1,1],"set":3}],[{"position":[1,-1,0],"color":[1,1,1],"set":3},{"position":[3,-3,0],"color":[1,1,1],"set":3}],[{"position":[2,-3,0],"color":[1,1,1],"set":3},{"position":[2,-7,0],"color":[1,1,1],"set":3}],[{"position":[2,-3,0],"color":[1,1,1],"set":3},{"position":[3,-3,0],"color":[1,1,1],"set":3}]],"triangles":[[{"position":[2,0,0],"color":[0,0,1],"set":0},{"position":[4,-2,0],"color":[0,0,1],"set":0},{"position":[4,2,0],"color":[0,0,1],"set":0}],[{"position":[4,-1,0],"color":[0,0,1],"set":0},{"position":[4,1,0],"color":[0,0,1],"set":0},{"position":[8,-1,0],"color":[0,0,1],"set":0}],[{"position":[4,1,0],"color":[0,0,1],"set":0},{"position":[8,-1,0],"color":[0,0,1],"set":0},{"position":[8,1,0],"color":[0,0,1],"set":0}],[{"position":[0,3,0],"color":[0,0,1],"set":1},{"position":[2,7,0],"color":[0,0,1],"set":1},{"position":[0,7,0],"color":[0,0,1],"set":1}],[{"position":[1,1,0],"color":[0,0,1],"set":1},{"position":[3,3,0],"color":[0,0,1],"set":1},{"position":[-1,3,0],"color":[0,0,1],"set":1}],[{"position":[2,3,0],"color":[0,0,1],"set":1},{"position":[0,3,0],"color":[0,0,1],"set":1},{"position":[2,7,0],"color":[0,0,1],"set":1}],[{"position":[-2,-1,0],"color":[0,0,1],"set":2},{"position":[-6,1,0],"color":[0,0,1],"set":2},{"position":[-6,-1,0],"color":[0,0,1],"set":2}],[{"position":[-2,1,0],"color":[0,0,1],"set":2},{"position":[-2,-1,0],"color":[0,0,1],"set":2},{"position":[-6,1,0],"color":[0,0,1],"set":2}],[{"position":[0,0,0],"color":[0,0,1],"set":2},{"position":[-2,2,0],"color":[0,0,1],"set":2},{"position":[-2,-2,0],"color":[0,0,1],"set":2}],[{"position":[0,-3,0],"color":[0,0,1],"set":3},{"position":[2,-3,0],"color":[0,0,1],"set":3},{"position":[0,-7,0],"color":[0,0,1],"set":3}],[{"position":[1,-1,0],"color":[0,0,1],"set":3},{"position":[-1,-3,0],"color":[0,0,1],"set":3},{"position":[3,-3,0],"color":[0,0,1],"set":3}],[{"position":[2,-3,0],"color":[0,0,1],"set":3},{"position":[0,-7,0],"color":[0,0,1],"set":3},{"position":[2,-7,0],"color":[0,0,1],"set":3}]]},"view":{"focusPoint":[1,0,0],"rotationMatrix":[[1,0,0],[0,1,0],[0,0,1]],"scale":1,"screenShift":[0,0,60]},"projection":{"zNear":0.25,"zFar":300,"zoomY":4},"backgroundColor":[0,0,0],"cursor":{"position":[1,0,-20],"marker1":null,"marker2":null,"color":[0,0,1],"step":1},"clipMaxVector":[100000000000000000000,100000000000000000000,100000000000000000000],"clipMinVector":[-100000000000000000000,-100000000000000000000,-100000000000000000000],"light":{"vector":[0,0,1],"ambientFraction":0.2},"set":{"current":3},"links":[{"label":"INDEX","opener":"","url":"travel-index.html","position":[1,0,0]}]}
@@ -77,19 +77,19 @@ mki3d.url.completeLink= function ( opener, input) {
 
 /* handling mki3d data */
 
-mki3dIndex={}
+var mki3dIndex={}
 
-mki3dStage={}
+var mki3dStage={}
 
 // mki3dToken={}
-mki3dLinkSymbol={}
+var mki3dLinkSymbol={}
 
-loadedStage={}
+var loadedStage={}
 
 /* shadeFactor is computed for triangles */
 /* Color of the triangle is scaled by the shade factor before placing it into buffer of colors */
 /* light parameter can be mki3d.data.light  */
-shadeFactor= function ( triangle, light) {
+var shadeFactor= function ( triangle, light) {
     var normal= normalToPlane(triangle[0].position,triangle[1].position,triangle[2].position);
     var sp= scalarProduct(light.vector, normal);
     return light.ambientFraction+(1-light.ambientFraction)*Math.abs(sp);  
