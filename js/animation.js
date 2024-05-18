@@ -133,6 +133,13 @@ animation.KeyUpStopAction = false; // keyUp event stops action
 
 /* callback(animation) -- performs callbacks using animation parameters */
 animation.start= function( callback ) {
+
+    // TEST GAMEPAD
+    const [gp] = navigator.getGamepads();
+    if (gp) {
+	console.log(gp);
+    }
+
     if(messageCanceledByAction) hideMessage(); 
     
     var animate = function() {
