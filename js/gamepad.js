@@ -1,7 +1,7 @@
 var gamepad={}
 // axes indexes ( https://w3c.github.io/gamepad/#remapping )
 const GPA_AxisRightX=2
-const GPA_AxisRightY=2
+const GPA_AxisRightY=3
 const GPA_AxisLeftX=0
 const GPA_AxisLeftY=1
 
@@ -14,73 +14,119 @@ const GPB_ButtonDpadLeft=14
 const GPB_ButtonDpadRight=15
 const GPB_ButtonA=0
 const GPB_ButtonStart=9
+const GPB_ButtonHome=16
+
+
+
+gamepad.animation = null;
+gamepad.lastCallback = null;
+gamepad.lastStop = null;
+gamepad.setNextAction = function (callback) {
+    if( animation.currentCallback === callback ) {
+	if( gamepad.lastStop != animation.lastStop ) {
+	    window.cancelAnimationFrame(animation.requestId);
+	    animation.requestId = 0;
+	}
+	return // continue the same action
+    } else {
+	// console.log("NEW ACTION")
+	// animation.stop();
+	if (animation.requestId) {
+	    window.cancelAnimationFrame(animation.requestId);
+	}
+	animation.requestId = 0;
+	gamepad.lastStop = animation.lastStop
+	animation.start( callback );
+    }
+}
+
+
+gamepad.check= function(){
+    const gp = navigator.getGamepads();
+    // console.log( gp );///
+    if (gp[0]) {
+	//console.log(gp);
+	let nextAction=animation.noAction ; // default
+	if( gp[0].axes[GPA_AxisRightX] < -0.5 ) {
+	    nextAction= rl;
+	} else if ( gp[0].axes[GPA_AxisRightX] > 0.5 ) {
+	    nextAction= rr;
+	}
+	
+	gamepad.setNextAction(nextAction)
+	
+    } else {
+	// action.stop()
+    }
+    
+}
 
 /* FROM mki3dgame/gamepad.go:
- 
-		var nextAction ActionIndex = ActionNIL
+   
+   var nextAction ActionIndex = ActionNIL
 
-		switch {
-		case gamepadStatePtr.Axes[glfw.AxisRightX] < -0.5:
-			nextAction = ActionRL
-		case gamepadStatePtr.Axes[glfw.AxisRightX] > 0.5:
-			nextAction = ActionRR
+   switch {
+   case gamepadStatePtr.Axes[glfw.AxisRightX] < -0.5:
+   nextAction = ActionRL
+   case gamepadStatePtr.Axes[glfw.AxisRightX] > 0.5:
+   nextAction = ActionRR
 
-		case gamepadStatePtr.Axes[glfw.AxisRightY] < -0.5:
-			nextAction = ActionRD
-		case gamepadStatePtr.Axes[glfw.AxisRightY] > 0.5:
-			nextAction = ActionRU
+   case gamepadStatePtr.Axes[glfw.AxisRightY] < -0.5:
+   nextAction = ActionRD
+   case gamepadStatePtr.Axes[glfw.AxisRightY] > 0.5:
+   nextAction = ActionRU
 
-		case gamepadStatePtr.Axes[glfw.AxisLeftY] < -0.5:
-			nextAction = ActionMF
-		case gamepadStatePtr.Axes[glfw.AxisLeftY] > 0.5:
-			nextAction = ActionMB
+   case gamepadStatePtr.Axes[glfw.AxisLeftY] < -0.5:
+   nextAction = ActionMF
+   case gamepadStatePtr.Axes[glfw.AxisLeftY] > 0.5:
+   nextAction = ActionMB
 
-		case gamepadStatePtr.Axes[glfw.AxisLeftX] < -0.5:
-			nextAction = ActionML
-		case gamepadStatePtr.Axes[glfw.AxisLeftX] > 0.5:
-			nextAction = ActionMR
+   case gamepadStatePtr.Axes[glfw.AxisLeftX] < -0.5:
+   nextAction = ActionML
+   case gamepadStatePtr.Axes[glfw.AxisLeftX] > 0.5:
+   nextAction = ActionMR
 
-		case gamepadStatePtr.Axes[glfw.AxisRightTrigger] > -0.95:
-			nextAction = ActionMF
-		case gamepadStatePtr.Axes[glfw.AxisLeftTrigger] > -0.95:
-			nextAction = ActionMB
+   case gamepadStatePtr.Axes[glfw.AxisRightTrigger] > -0.95:
+   nextAction = ActionMF
+   case gamepadStatePtr.Axes[glfw.AxisLeftTrigger] > -0.95:
+   nextAction = ActionMB
 
-		case gamepadStatePtr.Buttons[glfw.ButtonDpadUp] == glfw.Press:
-			nextAction = ActionMU
-		case gamepadStatePtr.Buttons[glfw.ButtonDpadDown] == glfw.Press:
-			nextAction = ActionMD
+   case gamepadStatePtr.Buttons[glfw.ButtonDpadUp] == glfw.Press:
+   nextAction = ActionMU
+   case gamepadStatePtr.Buttons[glfw.ButtonDpadDown] == glfw.Press:
+   nextAction = ActionMD
 
-		case gamepadStatePtr.Buttons[glfw.ButtonDpadLeft] == glfw.Press:
-			nextAction = ActionML
-		case gamepadStatePtr.Buttons[glfw.ButtonDpadRight] == glfw.Press:
-			nextAction = ActionMR
+   case gamepadStatePtr.Buttons[glfw.ButtonDpadLeft] == glfw.Press:
+   nextAction = ActionML
+   case gamepadStatePtr.Buttons[glfw.ButtonDpadRight] == glfw.Press:
+   nextAction = ActionMR
 
-		case gamepadStatePtr.Buttons[glfw.ButtonA] == glfw.Press:
-			nextAction = ActionLV
+   case gamepadStatePtr.Buttons[glfw.ButtonA] == glfw.Press:
+   nextAction = ActionLV
 
-		case gamepadStatePtr.Buttons[glfw.ButtonStart] == glfw.Press:
-			fmt.Println("RELOADING RANDOM STAGE ...")
-			ZenityInfo("NEXT RANDOM STAGE ...", "1")
-			g.NextStage()
+   case gamepadStatePtr.Buttons[glfw.ButtonStart] == glfw.Press:
+   fmt.Println("RELOADING RANDOM STAGE ...")
+   ZenityInfo("NEXT RANDOM STAGE ...", "1")
+   g.NextStage()
 
-		}
+   }
 
-		if nextAction != ActionNIL {
-			g.Paused = false // new version for single-thread version
-			g.LastActivityTime = glfw.GetTime()
-		}
+   if nextAction != ActionNIL {
+   g.Paused = false // new version for single-thread version
+   g.LastActivityTime = glfw.GetTime()
+   }
 
-		if nextAction == g.LastGamepadAction {
-			return // continuation of the same action or noaction
-		}
+   if nextAction == g.LastGamepadAction {
+   return // continuation of the same action or noaction
+   }
 
-		if nextAction != g.LastGamepadAction {
-			g.CancelAction() // the action is changed -- reset speed
-		}
+   if nextAction != g.LastGamepadAction {
+   g.CancelAction() // the action is changed -- reset speed
+   }
 
-		g.LastGamepadAction = nextAction       // record  as the last gamepad action
-		g.SetAction(g.ActionArray[nextAction]) // set current action
+   g.LastGamepadAction = nextAction       // record  as the last gamepad action
+   g.SetAction(g.ActionArray[nextAction]) // set current action
 
-	}
+   }
 
 */

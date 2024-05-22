@@ -154,7 +154,12 @@ function setCallbacks(){
 
     /* https://developer.mozilla.org/en-US/docs/Web/API/GamepadEvent */
 
+
+    gp=null;
+    
     window.addEventListener("gamepadconnected", (e) => {
+        // gp=e.gamepad; //// tmp
+	// animation.start( animation.noAction )
 	console.log(
 	    "Gamepad connected at index %d: %s. %d buttons, %d axes.",
 	    e.gamepad.index,
@@ -165,6 +170,7 @@ function setCallbacks(){
     });
 
     window.addEventListener("gamepaddisconnected", (e) => {
+	// gp=null;  //// tmp
 	console.log(
 	    "Gamepad disconnected from index %d: %s",
 	    e.gamepad.index,

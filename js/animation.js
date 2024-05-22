@@ -68,7 +68,7 @@ var ru=animation.rotUp= function(){
     var step =  animation.rotSpeed*animation.deltaTime
     rotateYZ(traveler, -step );
 }
-    
+
 var rd=animation.rotDown= function(){
     var step =  animation.rotSpeed*animation.deltaTime
     rotateYZ(traveler, step );
@@ -131,18 +131,31 @@ animation.sectors= [
 animation.keyAction=false; // indicates that current animation is caused by key press
 animation.KeyUpStopAction = false; // keyUp event stops action
 
+
+animation.noAction= function(){
+    gamepad.check()
+}
+
+animation.currentCallback=null;
+
 /* callback(animation) -- performs callbacks using animation parameters */
 animation.start= function( callback ) {
-
-    // TEST GAMEPAD
-    const [gp] = navigator.getGamepads();
-    if (gp) {
-	console.log(gp);
-    }
+    animation.speedReset(); //
 
     if(messageCanceledByAction) hideMessage(); 
+
+    let myLaststop=animation.lastStop;
     
     var animate = function() {
+	if( myLaststop != animation.lastStop ) {
+	    console.log( myLaststop, animation.lastStop )
+	    animation.lastStop++
+
+	    gamepad.lastStop = animation.lastStop
+	    myLaststop=animation.lastStop
+	    animation.start( animation.noAction )
+	    return; // obsolete request ?!
+	}
 	if( animation.requestId == 0 ) return; // animation was cancelled
 	var time=window.performance.now();
 	animation.deltaTime=time-animation.lastTime
@@ -151,6 +164,7 @@ animation.start= function( callback ) {
 	drawScene();  
 	if( animation.requestId == 0 ) return; // animation was cancelled by the callback ?
 	animation.requestId = window.requestAnimationFrame(animate); // ask for next animation
+	///// gamepad.check()
     }
 
     if( animation.requestId != 0 ) animation.stop(); // cancell old action
@@ -161,17 +175,31 @@ animation.start= function( callback ) {
     
     animation.startTime = window.performance.now();
     animation.lastTime = animation.startTime;
-    drawScene();  
+    drawScene();
+    animation.currentCallback=callback;
     animation.requestId = window.requestAnimationFrame(animate);
 }
 
 
+animation.lastStop = 0;
+
 animation.stop = function() {
+    animation.lastStop++;
     if (animation.requestId)
 	window.cancelAnimationFrame(animation.requestId);
     animation.requestId = 0;
     drawScene();
     animation.speedReset();
+    animation.currentCallback=null; ///
+
+/*
+    gp = navigator.getGamepads();
+    console.log( gp );
+    if (gp[0]) {
+	animation.start( animation.noAction )
+    }
+*/
+    gamepad.check();
 }
 
 animation.MouseUpStopAction =  true;
