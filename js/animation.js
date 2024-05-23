@@ -147,13 +147,13 @@ animation.start= function( callback ) {
     let myLaststop=animation.lastStop;
     
     var animate = function() {
-	if( myLaststop != animation.lastStop ) {
-	    console.log( myLaststop, animation.lastStop )
-	    animation.lastStop++
-
-	    gamepad.lastStop = animation.lastStop
-	    myLaststop=animation.lastStop
-	    animation.start( animation.noAction )
+	if( !(callback === gamepad.stopAction) && ( gamepad.stop || (myLaststop != animation.lastStop) ) ) {
+	    console.log( myLaststop, animation.lastStop ) /// too old
+	    
+	    // animation.lastStop++
+	    // myLaststop=animation.lastStop
+	    gamepad.stop=true;
+            gamepad.check();
 	    return; // obsolete request ?!
 	}
 	if( animation.requestId == 0 ) return; // animation was cancelled
@@ -163,13 +163,14 @@ animation.start= function( callback ) {
 	callback();
 	drawScene();  
 	if( animation.requestId == 0 ) return; // animation was cancelled by the callback ?
-	animation.requestId = window.requestAnimationFrame(animate); // ask for next animation
+	if( !(callback === gamepad.stopAction) ) {
+	    animation.requestId = window.requestAnimationFrame(animate); // ask for next animation
+	}
 	///// gamepad.check()
     }
 
     if( animation.requestId != 0 ) animation.stop(); // cancell old action
 
-    
     animation.initRotXZ= traveler.rotXZ;
     animation.totalRotXZ= 0;
     
@@ -185,6 +186,7 @@ animation.lastStop = 0;
 
 animation.stop = function() {
     animation.lastStop++;
+    console.log("lastStop = ", animation.lastStop)
     if (animation.requestId)
 	window.cancelAnimationFrame(animation.requestId);
     animation.requestId = 0;
@@ -192,13 +194,13 @@ animation.stop = function() {
     animation.speedReset();
     animation.currentCallback=null; ///
 
-/*
-    gp = navigator.getGamepads();
-    console.log( gp );
-    if (gp[0]) {
-	animation.start( animation.noAction )
-    }
-*/
+    /*
+      gp = navigator.getGamepads();
+      console.log( gp );
+      if (gp[0]) {
+      animation.start( animation.noAction )
+      }
+    */
     gamepad.check();
 }
 

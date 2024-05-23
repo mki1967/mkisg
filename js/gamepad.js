@@ -20,28 +20,38 @@ const GPB_ButtonHome=16
 
 gamepad.animation = null;
 gamepad.lastCallback = null;
-gamepad.lastStop = null;
+// gamepad.lastStop = null;
+gamepad.stop = false;
+gamepad.stopActionSet = false;
+gamepad.waitForNoAction = false;
+
+gamepad.stopAction = function(){
+    console.log("stopAction")
+    gamepad.stop=false;
+    gamepad.stopActionSet=false;
+    gamepad.waitForNoAction = true; // force the user to release the gamepad controllers
+    gamepad.check()
+}
+
 gamepad.setNextAction = function (callback) {
     if( animation.currentCallback === callback ) {
-	if( gamepad.lastStop != animation.lastStop ) {
-	    window.cancelAnimationFrame(animation.requestId);
+	if( gamepad.stop ) {
+	    window.cancelAnimationFrame(animation.requestId); 
 	    animation.requestId = 0;
 	}
 	return // continue the same action
     } else {
-	// console.log("NEW ACTION")
-	// animation.stop();
+	console.log("NEW ACTION")
 	if (animation.requestId) {
 	    window.cancelAnimationFrame(animation.requestId);
 	}
 	animation.requestId = 0;
-	gamepad.lastStop = animation.lastStop
+	// normal mode
 	animation.start( callback );
     }
 }
 
-
-gamepad.check= function(){
+gamepad.whatAction = function() {
     const gp = navigator.getGamepads();
     // console.log( gp );///
     if (gp[0]) {
@@ -51,14 +61,45 @@ gamepad.check= function(){
 	    nextAction= rl;
 	} else if ( gp[0].axes[GPA_AxisRightX] > 0.5 ) {
 	    nextAction= rr;
+	} else {
+	    // remains nextAction === animation.noAction
+	    gamepad.waitForNoAction = false
 	}
 	
-	gamepad.setNextAction(nextAction)
+	return nextAction;
 	
     } else {
-	// action.stop()
+	null; // gamepad disconnected ?!
     }
     
+}
+
+gamepad.check= function(){
+    /// set cleaning of the old (pre-lastStop) animations
+    if( gamepad.stop && gamepad.stopActionSet ) {
+	return; // do nothing - gamepad is stoped and its unblocking is scheduled
+    }
+    if( gamepad.stop && (! gamepad.stopActionSet ) ) {
+	if (animation.requestId) {
+	    window.cancelAnimationFrame(animation.requestId);
+	}
+        console.log("scheduling stopActionSet");
+	gamepad.stopActionSet=true
+	animation.start( gamepad.stopAction ) // enqueue the action to ublock the gamepad
+	return;
+    }
+
+    nextAction=gamepad.whatAction();
+    if( nextAction != null ) {
+	if( gamepad.waitForNoAction ) {
+	    gamepad.setNextAction( animation.noAction )
+	} else {
+	    
+	    gamepad.setNextAction( nextAction )
+	}
+    }  /* !!!!! else {
+	animation.stop() // gamepad disconnected ?!
+    } */
 }
 
 /* FROM mki3dgame/gamepad.go:
