@@ -51,29 +51,6 @@ gamepad.setNextAction = function (callback) {
     }
 }
 
-gamepad.whatAction = function() {
-    const gp = navigator.getGamepads();
-    // console.log( gp );///
-    if (gp[0]) {
-	//console.log(gp);
-	let nextAction=animation.noAction ; // default
-	if( gp[0].axes[GPA_AxisRightX] < -0.5 ) {
-	    nextAction= rl;
-	} else if ( gp[0].axes[GPA_AxisRightX] > 0.5 ) {
-	    nextAction= rr;
-	} else {
-	    // remains nextAction === animation.noAction
-	    gamepad.waitForNoAction = false
-	}
-	
-	return nextAction;
-	
-    } else {
-	null; // gamepad disconnected ?!
-    }
-    
-}
-
 gamepad.check= function(){
     /// set cleaning of the old (pre-lastStop) animations
     if( gamepad.stop && gamepad.stopActionSet ) {
@@ -101,6 +78,44 @@ gamepad.check= function(){
 	animation.stop() // gamepad disconnected ?!
     } */
 }
+
+
+gamepad.whatAction = function() {
+    const gp = navigator.getGamepads();
+    // console.log( gp );///
+    if (gp[0]) {
+	//console.log(gp);
+	let nextAction=animation.noAction ; // default
+	if( gp[0].axes[GPA_AxisRightX] < -0.5 ) {
+	    nextAction= rl;
+	} else if ( gp[0].axes[GPA_AxisRightX] > 0.5 ) {
+	    nextAction= rr;
+	} else if ( gp[0].axes[GPA_AxisRightY] < -0.5 ) {
+	    nextAction= rd;
+	} else if ( gp[0].axes[GPA_AxisRightY] > 0.5 ) {
+	    nextAction= ru;
+	} else if ( gp[0].axes[GPA_AxisLeftY] < -0.5 ) {
+	    nextAction= mf;
+	} else if ( gp[0].axes[GPA_AxisLeftY] > 0.5 ) {
+	    nextAction= mb;
+	} else if ( gp[0].axes[GPA_AxisLeftX] < -0.5 ) {
+	    nextAction= ml;
+	} else if ( gp[0].axes[GPA_AxisLeftX] > 0.5 ) {
+	    nextAction= mr;
+	} else {
+	    // remains nextAction === animation.noAction
+	    gamepad.waitForNoAction = false
+	}
+	
+	return nextAction;
+	
+    } else {
+	null; // gamepad disconnected ?!
+    }
+    
+}
+
+
 
 /* FROM mki3dgame/gamepad.go:
    
