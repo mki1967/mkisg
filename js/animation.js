@@ -201,7 +201,13 @@ animation.stop = function() {
       animation.start( animation.noAction )
       }
     */
-    gamepad.check();
+    // gamepad.check();
+    const gp = navigator.getGamepads();
+    // console.log( gp );///
+    if (gp[0]) {
+	animation.start( gamepad.loop )
+    }
+
 }
 
 animation.MouseUpStopAction =  true;

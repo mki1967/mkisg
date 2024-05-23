@@ -18,6 +18,13 @@ const GPB_ButtonHome=16
 
 
 
+gamepad.loop = function (){
+    let action=gamepad.whatAction();
+    if( !(action === null) ) action();
+}
+
+gamepad.noAction = function(){}
+
 gamepad.animation = null;
 gamepad.lastCallback = null;
 // gamepad.lastStop = null;
@@ -87,7 +94,7 @@ gamepad.check= function(){
 	return;
     }
 
-    nextAction=gamepad.whatAction();
+    let nextAction=gamepad.whatAction();
     if( nextAction != null ) {
 	if( gamepad.waitForNoAction ) {
 	    gamepad.setNextAction( animation.noAction )
@@ -106,7 +113,8 @@ gamepad.whatAction = function() {
     // console.log( gp );///
     if (gp[0]) {
 	//console.log(gp);
-	let nextAction=animation.noAction ; // default
+	// let nextAction=animation.noAction ; // default
+	let nextAction=gamepad.noAction ; // default
 	if( gp[0].axes[GPA_AxisRightX] < -0.5 ) {
 	    nextAction= rl;
 	} else if ( gp[0].axes[GPA_AxisRightX] > 0.5 ) {
