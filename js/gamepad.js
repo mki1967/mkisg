@@ -23,7 +23,7 @@ gamepad.lastCallback = null;
 // gamepad.lastStop = null;
 gamepad.stop = false;
 gamepad.stopActionSet = false;
-gamepad.waitForNoAction = false;
+gamepad.waitForNoAction = true;
 
 gamepad.stopAction = function(){
     console.log("stopAction")
@@ -31,6 +31,27 @@ gamepad.stopAction = function(){
     gamepad.stopActionSet=false;
     gamepad.waitForNoAction = true; // force the user to release the gamepad controllers
     gamepad.check()
+}
+
+gamepad.lv = function(){
+    if( traveler.rotYZ == 0) {
+	old=traveler.rotXZ;
+	traveler.rotXZ= nearestRightAngle(traveler.rotXZ);
+	gamepad.waitForNoAction = true
+	// animation.stop();
+    } else {
+	traveler.rotYZ=0;
+	secretTaps=0;
+	gamepad.waitForNoAction = true
+	// animation.stop();
+    }
+}
+
+gamepad.startGame = function(){  /////// TODO: resolve problems
+    gamepad.waitForNoAction = true    
+    animation.stop();
+    startGame()
+    
 }
 
 gamepad.setNextAction = function (callback) {
@@ -102,6 +123,22 @@ gamepad.whatAction = function() {
 	    nextAction= ml;
 	} else if ( gp[0].axes[GPA_AxisLeftX] > 0.5 ) {
 	    nextAction= mr;
+	} else if ( gp[0].buttons[GPB_AxisRightTrigger].pressed ) {
+	    nextAction= mf;
+	} else if ( gp[0].buttons[GPB_AxisLeftTrigger].pressed ) {
+	    nextAction= mb;
+	} else if ( gp[0].buttons[GPB_ButtonDpadUp].pressed ) {
+	    nextAction= mu;
+	} else if ( gp[0].buttons[GPB_ButtonDpadDown].pressed ) {
+	    nextAction= md;
+	} else if ( gp[0].buttons[GPB_ButtonDpadRight].pressed ) {
+	    nextAction= mr;
+	} else if ( gp[0].buttons[GPB_ButtonDpadLeft].pressed ) {
+	    nextAction= ml;
+	} else if ( gp[0].buttons[GPB_ButtonA].pressed ) {
+	    nextAction= gamepad.lv;
+	} else if ( gp[0].buttons[GPB_ButtonStart].pressed ) {
+	    nextAction= gamepad.startGame();
 	} else {
 	    // remains nextAction === animation.noAction
 	    gamepad.waitForNoAction = false
