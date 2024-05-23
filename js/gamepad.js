@@ -23,7 +23,7 @@ gamepad.lastCallback = null;
 // gamepad.lastStop = null;
 gamepad.stop = false;
 gamepad.stopActionSet = false;
-gamepad.waitForNoAction = true;
+gamepad.waitForNoAction = false;
 
 gamepad.stopAction = function(){
     console.log("stopAction")
