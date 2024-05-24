@@ -20,91 +20,44 @@ const GPB_ButtonHome=16
 
 gamepad.loop = function (){
     let action=gamepad.whatAction();
-    if( !(action === null) ) action();
+    if(action == null) {
+	animation.stop()
+    } else {
+	if( !gamepad.waitForNoAction ) action();
+    }
 }
 
-gamepad.noAction = function(){}
+gamepad.noAction = function(){
+    animation.reset()
+}
 
 gamepad.animation = null;
 gamepad.lastCallback = null;
-// gamepad.lastStop = null;
 gamepad.stop = false;
 gamepad.stopActionSet = false;
 gamepad.waitForNoAction = false;
 
-gamepad.stopAction = function(){
-    console.log("stopAction")
-    gamepad.stop=false;
-    gamepad.stopActionSet=false;
-    gamepad.waitForNoAction = true; // force the user to release the gamepad controllers
-    gamepad.check()
-}
 
 gamepad.lv = function(){
+    if( gamepad.waitForNoAction ) return   
     if( traveler.rotYZ == 0) {
 	old=traveler.rotXZ;
 	traveler.rotXZ= nearestRightAngle(traveler.rotXZ);
 	gamepad.waitForNoAction = true
-	// animation.stop();
+	animation.stop();
     } else {
 	traveler.rotYZ=0;
 	secretTaps=0;
 	gamepad.waitForNoAction = true
-	// animation.stop();
+	animation.stop();
     }
 }
 
 gamepad.startGame = function(){  /////// TODO: resolve problems
-    gamepad.waitForNoAction = true    
-    animation.stop();
+    if( gamepad.waitForNoAction ) return   
     startGame()
+    animation.stop();
     
-}
-
-gamepad.setNextAction = function (callback) {
-    if( animation.currentCallback === callback ) {
-	if( gamepad.stop ) {
-	    window.cancelAnimationFrame(animation.requestId); 
-	    animation.requestId = 0;
-	}
-	return // continue the same action
-    } else {
-	console.log("NEW ACTION")
-	if (animation.requestId) {
-	    window.cancelAnimationFrame(animation.requestId);
-	}
-	animation.requestId = 0;
-	// normal mode
-	animation.start( callback );
-    }
-}
-
-gamepad.check= function(){
-    /// set cleaning of the old (pre-lastStop) animations
-    if( gamepad.stop && gamepad.stopActionSet ) {
-	return; // do nothing - gamepad is stoped and its unblocking is scheduled
-    }
-    if( gamepad.stop && (! gamepad.stopActionSet ) ) {
-	if (animation.requestId) {
-	    window.cancelAnimationFrame(animation.requestId);
-	}
-        console.log("scheduling stopActionSet");
-	gamepad.stopActionSet=true
-	animation.start( gamepad.stopAction ) // enqueue the action to ublock the gamepad
-	return;
-    }
-
-    let nextAction=gamepad.whatAction();
-    if( nextAction != null ) {
-	if( gamepad.waitForNoAction ) {
-	    gamepad.setNextAction( animation.noAction )
-	} else {
-	    
-	    gamepad.setNextAction( nextAction )
-	}
-    }  /* !!!!! else {
-	animation.stop() // gamepad disconnected ?!
-    } */
 }
 
 
@@ -113,7 +66,6 @@ gamepad.whatAction = function() {
     // console.log( gp );///
     if (gp[0]) {
 	//console.log(gp);
-	// let nextAction=animation.noAction ; // default
 	let nextAction=gamepad.noAction ; // default
 	if( gp[0].axes[GPA_AxisRightX] < -0.5 ) {
 	    nextAction= rl;

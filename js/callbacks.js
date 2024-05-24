@@ -167,6 +167,7 @@ function setCallbacks(){
 	    e.gamepad.buttons.length,
 	    e.gamepad.axes.length,
 	);
+	animation.stop() // should start the game loop
     });
 
     window.addEventListener("gamepaddisconnected", (e) => {
@@ -176,6 +177,7 @@ function setCallbacks(){
 	    e.gamepad.index,
 	    e.gamepad.id,
 	);
+	animation.stop() // should stop the game loop
     });
     
 }

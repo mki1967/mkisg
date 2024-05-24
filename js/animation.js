@@ -18,9 +18,6 @@ animation.speedUpdate= function(){ // acceleration
     animation.movSpeed = Math.min( animation.maxSpeed,  animation.movSpeed + animation.deltaTime * animation.acceleration );
 }
 
-animation.speedReset= function(){
-    animation.movSpeed = animation.initialSpeed;
-}
 
 animation.rotSpeed= 0.08 // rotation per milisecond
 
@@ -132,30 +129,40 @@ animation.keyAction=false; // indicates that current animation is caused by key 
 animation.KeyUpStopAction = false; // keyUp event stops action
 
 
-animation.noAction= function(){
-    gamepad.check()
+animation.currentCallback=null;
+
+
+/* reset amimation functions */
+animation.speedReset= function(){
+    animation.movSpeed = animation.initialSpeed;
 }
 
-animation.currentCallback=null;
+animation.rotReset = function(){
+    animation.initRotXZ= traveler.rotXZ;
+    animation.totalRotXZ= 0;
+}
+
+animation.reset = function(){
+    // console.log("RESET")
+    animation.speedReset()
+    animation.rotReset()
+    animation.startTime = window.performance.now();
+    animation.lastTime = animation.startTime;    
+}
 
 /* callback(animation) -- performs callbacks using animation parameters */
 animation.start= function( callback ) {
-    animation.speedReset(); //
 
     if(messageCanceledByAction) hideMessage(); 
 
     let myLaststop=animation.lastStop;
     
     var animate = function() {
-	if( !(callback === gamepad.stopAction) && ( gamepad.stop || (myLaststop != animation.lastStop) ) ) {
+	if( myLaststop != animation.lastStop  ) {
 	    console.log( myLaststop, animation.lastStop ) /// too old
-	    
-	    // animation.lastStop++
-	    // myLaststop=animation.lastStop
-	    gamepad.stop=true;
-            gamepad.check();
 	    return; // obsolete request ?!
 	}
+	
 	if( animation.requestId == 0 ) return; // animation was cancelled
 	var time=window.performance.now();
 	animation.deltaTime=time-animation.lastTime
@@ -166,18 +173,13 @@ animation.start= function( callback ) {
 	if( !(callback === gamepad.stopAction) ) {
 	    animation.requestId = window.requestAnimationFrame(animate); // ask for next animation
 	}
-	///// gamepad.check()
     }
 
     if( animation.requestId != 0 ) animation.stop(); // cancell old action
 
-    animation.initRotXZ= traveler.rotXZ;
-    animation.totalRotXZ= 0;
-    
-    animation.startTime = window.performance.now();
-    animation.lastTime = animation.startTime;
     drawScene();
     animation.currentCallback=callback;
+    animation.reset(); //
     animation.requestId = window.requestAnimationFrame(animate);
 }
 
@@ -191,20 +193,12 @@ animation.stop = function() {
 	window.cancelAnimationFrame(animation.requestId);
     animation.requestId = 0;
     drawScene();
-    animation.speedReset();
+    animation.reset();
     animation.currentCallback=null; ///
-
-    /*
-      gp = navigator.getGamepads();
-      console.log( gp );
-      if (gp[0]) {
-      animation.start( animation.noAction )
-      }
-    */
-    // gamepad.check();
+    // check for the gamepad
     const gp = navigator.getGamepads();
-    // console.log( gp );///
     if (gp[0]) {
+	gamepad.waitForNoAction = true;
 	animation.start( gamepad.loop )
     }
 
