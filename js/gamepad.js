@@ -101,6 +101,9 @@ gamepad.whatAction = function() {
 	    nextAction= gamepad.startGame();
 	} else {
 	    // remains nextAction === animation.noAction
+	    if(gamepad.waitForNoAction) {
+		setTimeout(  hideMessage(), 10000 )
+	    }
 	    gamepad.waitForNoAction = false
 	}
 	

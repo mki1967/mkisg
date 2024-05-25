@@ -168,16 +168,19 @@ function setCallbacks(){
 	    e.gamepad.axes.length,
 	);
 	animation.stop() // should start the game loop
+	gamepad.waitForNoAction=true;
+	showMessage("GAMEPAD ON");
     });
 
     window.addEventListener("gamepaddisconnected", (e) => {
-	// gp=null;  //// tmp
+	gp=null;  //// tmp
+	animation.stop() // should stop the game loop
 	console.log(
 	    "Gamepad disconnected from index %d: %s",
 	    e.gamepad.index,
 	    e.gamepad.id,
 	);
-	animation.stop() // should stop the game loop
+	showMessage("GAMEPAD OFF");
     });
     
 }
