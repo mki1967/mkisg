@@ -269,7 +269,7 @@ function startTravel()
 
     
     showMessage(
-		"<div style='font-size:20px;'> Touch/click the screen sectors to navigate !</div>"
+		"<div style='font-size:20px;'> Touch/click the screen sectors or use gamepad!</div>"
 	       );
     
     
